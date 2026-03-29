@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+
+<html lang="it">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Digestivo | The Garage Ritual</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+
+        @import url('https://fonts.googleapis.com/css2?family=Syncopate:wght@700&family=Space+Grotesk:wght@300;700&display=swap');
+
+
+
+        body {
+
+            background-color: #000;
+
+            color: #fff;
+
+            font-family: 'Space Grotesk', sans-serif;
+
+            letter-spacing: -0.02em;
+
+        }
+
+
+
+        .heavy { font-family: 'Syncopate', sans-serif; text-transform: uppercase; }
+
+
+
+        /* Coniglio Stencil Style */
+
+        .rabbit-stencil {
+
+            filter: drop-shadow(0 0 10px #39ff14);
+
+            opacity: 0.8;
+
+        }
+
+
+
+        .garage-card {
+
+            background: #0a0a0a;
+
+            border: 1px solid #1a1a1a;
+
+            transition: 0.3s;
+
+        }
+
+
+
+        .garage-card:hover {
+
+            border-color: #39ff14;
+
+        }
+
+
+
+        .highlight-green { color: #39ff14; }
+
+
+
+        /* Effetto Scanline (TV Vecchia) */
+
+        .scanline {
+
+            width: 100%;
+
+            height: 2px;
+
+            background: rgba(57, 255, 20, 0.1);
+
+            position: absolute;
+
+            animation: move 4s linear infinite;
+
+        }
+
+
+
+        @keyframes move {
+
+            from { top: 0; }
+
+            to { top: 100%; }
+
+        }
+
+    </style>
+
+</head>
+
+<body class="max-w-md mx-auto relative overflow-x-hidden">
+
+
+
+    <div class="scanline"></div>
+
+
+
+    <header class="p-10 pt-16 text-left border-b border-zinc-900">
+
+        <h1 class="heavy text-5xl italic leading-none mb-2">DIGESTIVO</h1>
+
+        <div class="flex justify-between items-end">
+
+            <p class="text-xs font-bold highlight-green tracking-widest">THE GARAGE RITUAL</p>
+
+            <p class="text-[10px] opacity-40">PASQUA • 05.04 • 21:00</p>
+
+        </div>
+
+    </header>
+
+
+
+    <div class="p-10 flex justify-center border-b border-zinc-900 bg-zinc-950/50">
+
+        <svg class="rabbit-stencil w-48 h-48" viewBox="0 0 100 100" fill="none" stroke="#39ff14" stroke-width="1.5">
+
+            <path d="M30 45 L25 5 L45 35 M70 45 L75 5 L55 35 M30 45 C30 45 50 35 70 45 L70 85 C70 85 50 95 30 85 Z" stroke-linecap="round"/>
+
+            <circle cx="42" cy="55" r="1.5" fill="#39ff14"/>
+
+            <circle cx="58" cy="55" r="1.5" fill="#39ff14"/>
+
+            <path d="M40 75 Q50 80 60 75" stroke-width="1"/>
+
+        </svg>
+
+    </div>
+
+
+
+    <section class="p-8 space-y-6">
+
+        <div class="garage-card p-6">
+
+            <h3 class="heavy text-sm mb-2">The Garden</h3>
+
+            <p class="text-xs opacity-50 uppercase">Calcetto • Beer Pong • Open Air Chill</p>
+
+        </div>
+
+        
+
+        <div class="garage-card p-6 border-l-4 border-l-[#39ff14]">
+
+            <h3 class="heavy text-sm mb-2 highlight-green italic">The Garage</h3>
+
+            <p class="text-xs opacity-50 uppercase mb-4">The Main Underground Stage</p>
+
+            <div class="flex gap-4 text-[10px] font-bold">
+
+                <span>FEDERICA NATELLA</span>
+
+                <span class="opacity-20">/</span>
+
+                <span>ADOLFO CITRO</span>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="garage-card p-6">
+
+            <h3 class="heavy text-sm mb-2">The Smoke Room</h3>
+
+            <p class="text-xs opacity-50 uppercase">Hookah Lounge • Low Lights</p>
+
+        </div>
+
+    </section>
+
+
+
+    <section class="p-8 bg-zinc-950">
+
+        <h2 class="heavy text-[10px] mb-6 opacity-30">Accesso Riservato</h2>
+
+        
+
+        <div class="flex justify-between items-center mb-8">
+
+            <div class="space-y-1">
+
+                <p class="text-2xl heavy italic">10€ <span class="text-xs not-italic opacity-40">+ DRINK</span></p>
+
+                <p class="text-[9px] uppercase tracking-widest opacity-40">Entry entro le 23:00</p>
+
+            </div>
+
+            <div class="text-right">
+
+                <p class="text-xl heavy opacity-40">15€</p>
+
+                <p class="text-[9px] uppercase tracking-widest opacity-20">Dopo le 23:00</p>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="border border-zinc-800 p-6 text-center">
+
+            <p class="text-xs font-bold mb-2 uppercase">Vuoi entrare a <span class="highlight-green italic">7€ + Drink</span>?</p>
+
+            <p class="text-[10px] opacity-40 uppercase mb-4">Procedura obbligatoria: Compila il Google Form nel link in bio di @MAGA</p>
+
+            <div class="h-[1px] bg-zinc-900 w-full mb-4"></div>
+
+            <p class="text-[9px] italic opacity-30 italic">Posti limitati per la riduzione.</p>
+
+        </div>
+
+    </section>
+
+
+
+    <div class="p-8 pb-24 text-center">
+
+        <p class="text-[8px] uppercase tracking-[0.5em] opacity-20 italic">Non Convenzionale • Pasqua 2026 • Digestivo</p>
+
+    </div>
+
+
+
+    <div class="fixed bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black via-black to-transparent z-50 max-w-md mx-auto">
+
+        <button class="w-full bg-white text-black py-4 heavy text-xs hover:bg-[#39ff14] transition-colors">
+
+            PRENOTA RIDUZIONE 7€
+
+        </button>
+
+    </div>
+
+
+
+</body>
+
+</html>
