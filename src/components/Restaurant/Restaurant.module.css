@@ -1,0 +1,46 @@
+.restaurantSection { background: var(--bg-secondary); }
+
+.menuTabs { display: flex; justify-content: center; gap: 0.5rem; margin-bottom: 3rem; flex-wrap: wrap; }
+
+.menuTab {
+  padding: 0.75rem 1.75rem; border-radius: 50px;
+  font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em;
+  color: var(--text-muted); background: transparent; border: 2px solid var(--border);
+  transition: all var(--transition-base); cursor: pointer;
+}
+
+.menuTab.active, .menuTab:hover {
+  color: var(--bg-primary); background: var(--accent); border-color: var(--accent);
+}
+
+.menuContent { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
+.menuImage { border-radius: 24px; overflow: hidden; height: 500px; position: relative; }
+.menuImage img { width: 100%; height: 100%; object-fit: cover; }
+
+.menuImageOverlay {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  padding: 2rem; background: linear-gradient(to top, rgba(0,0,0,0.7), transparent); color: white;
+}
+.menuImageOverlay h3 { color: white; font-size: 1.5rem; margin-bottom: 0.25rem; }
+.menuImageOverlay p { color: rgba(255,255,255,0.8); font-size: 0.9rem; }
+
+.menuItemsList { display: flex; flex-direction: column; gap: 1.5rem; }
+
+.menuItem {
+  display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem;
+  padding: 1.25rem; border-radius: 16px; background: var(--bg-primary);
+  border: 1px solid var(--border); transition: all var(--transition-base);
+}
+.menuItem:hover { transform: translateX(8px); box-shadow: var(--card-shadow); }
+.menuItemInfo h4 { font-family: var(--font-sans), sans-serif; font-size: 1rem; font-weight: 600; margin-bottom: 0.25rem; }
+.menuItemInfo p { font-size: 0.85rem; color: var(--text-muted); }
+
+.menuItemPrice {
+  font-family: var(--font-serif), serif; font-size: 1.25rem; font-weight: 700;
+  color: var(--gold-leaf); white-space: nowrap;
+}
+
+.menuItem.featured { border-left: 3px solid var(--gold-leaf); }
+
+/* ── Responsive ── */
+@media (max-width: 1024px) { .menuContent { grid-template-columns: 1fr; } .menuImage { height: 300px; } }

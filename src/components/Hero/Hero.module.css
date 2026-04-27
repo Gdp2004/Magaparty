@@ -1,0 +1,214 @@
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.heroBg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.heroBgDay,
+.heroBgNight {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  transition: opacity var(--transition-theme);
+}
+
+.heroBgDay {
+  background-image: url('/images/hero-day.png');
+  opacity: 1;
+}
+
+.heroBgNight {
+  background-image: url('/images/hero-night.png');
+  opacity: 0;
+}
+
+:global([data-theme="night"]) .heroBgDay {
+  opacity: 0;
+}
+
+:global([data-theme="night"]) .heroBgNight {
+  opacity: 1;
+}
+
+.heroOverlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    180deg,
+    rgba(26, 55, 77, 0.15) 0%,
+    rgba(26, 55, 77, 0.4) 50%,
+    var(--bg-primary) 100%
+  );
+  transition: background var(--transition-theme);
+}
+
+:global([data-theme="night"]) .heroOverlay {
+  background: linear-gradient(
+    180deg,
+    rgba(11, 22, 34, 0.2) 0%,
+    rgba(11, 22, 34, 0.55) 50%,
+    var(--bg-primary) 100%
+  );
+}
+
+.heroContent {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  max-width: 900px;
+  padding: 0 2rem;
+}
+
+.heroBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1.25rem;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 50px;
+  backdrop-filter: blur(12px);
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  margin-bottom: 1.5rem;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.heroContent h1 {
+  color: #FFFFFF;
+  text-shadow: 0 2px 30px rgba(0, 0, 0, 0.3);
+  margin-bottom: 1rem;
+}
+
+.heroSubtitle {
+  font-size: clamp(1rem, 2vw, 1.3rem);
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: 2.5rem;
+  font-weight: 300;
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.2);
+}
+
+.heroCtas {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.heroCtaDay {
+  background: linear-gradient(135deg, var(--mediterranean-azure), #3DA8A6);
+  color: #FFFFFF;
+  padding: 1rem 2.5rem;
+  font-size: 1rem;
+}
+
+.heroCtaDay:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 30px rgba(79, 189, 186, 0.4);
+}
+
+.heroCtaNight {
+  background: linear-gradient(135deg, var(--sunset-coral), #E5604E);
+  color: #FFFFFF;
+  padding: 1rem 2.5rem;
+  font-size: 1rem;
+}
+
+.heroCtaNight:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 30px rgba(255, 114, 94, 0.4);
+}
+
+/* Sunset Countdown */
+.sunsetCountdown {
+  position: absolute;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.75rem 1.25rem;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  backdrop-filter: blur(16px);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  transition: all var(--transition-theme);
+}
+
+.sunsetIcon {
+  font-size: 1.2rem;
+}
+
+/* Scroll indicator */
+.scrollIndicator {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  animation: bounce 2s ease-in-out infinite;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(8px); }
+}
+
+.scrollIndicatorLine {
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(to bottom, rgba(255,255,255,0.6), transparent);
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .heroCtas {
+    flex-direction: column;
+    align-items: center;
+  }
+  .heroCtaDay, .heroCtaNight {
+    width: 100%;
+    max-width: 300px;
+    justify-content: center;
+  }
+  .sunsetCountdown {
+    bottom: auto;
+    top: calc(var(--nav-height) + 1rem);
+    right: 1rem;
+    font-size: 0.75rem;
+    padding: 0.5rem 1rem;
+  }
+  .scrollIndicator {
+    display: none;
+  }
+}

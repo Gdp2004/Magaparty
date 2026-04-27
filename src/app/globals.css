@@ -1,0 +1,390 @@
+/* ============================================================
+   DESIGN TOKENS â€” CSS Custom Properties
+   ============================================================ */
+
+/* â”€â”€ Google Fonts â”€â”€ */
+
+
+/* â”€â”€ Day Mode (Default) â”€â”€ */
+:root {
+  /* Core Palette */
+  --sand-pearl: #F5EFE6;
+  --ocean-midnight: #1A374D;
+  --mediterranean-azure: #4FBDBA;
+  --sunset-coral: #FF725E;
+  --gold-leaf: #D4AF37;
+  --gold-leaf-light: #E8C96A;
+  --gold-leaf-dark: #B8941F;
+
+  /* Semantic Tokens */
+  --bg-primary: #F5EFE6;
+  --bg-secondary: #FFFFFF;
+  --bg-tertiary: #EDE6D8;
+  --text-primary: #1A374D;
+  --text-secondary: #3D5A73;
+  --text-muted: #7A97AD;
+  --accent: #4FBDBA;
+  --accent-light: rgba(79, 189, 186, 0.15);
+  --accent-glow: rgba(79, 189, 186, 0.35);
+  --cta: #D4AF37;
+  --cta-hover: #B8941F;
+  --cta-glow: rgba(212, 175, 55, 0.4);
+  --border: rgba(26, 55, 77, 0.1);
+  --card-shadow: 0 4px 24px rgba(26, 55, 77, 0.08);
+  --card-shadow-hover: 0 12px 40px rgba(26, 55, 77, 0.15);
+  --overlay: rgba(26, 55, 77, 0.6);
+  --glass-bg: rgba(245, 239, 230, 0.75);
+  --glass-border: rgba(255, 255, 255, 0.3);
+  --nav-height: 80px;
+  --section-padding: clamp(60px, 10vw, 120px);
+
+  /* Transitions */
+  --transition-fast: 0.2s ease;
+  --transition-base: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-theme: 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* â”€â”€ Night Mode Overrides â”€â”€ */
+[data-theme="night"] {
+  --bg-primary: #0B1622;
+  --bg-secondary: #132337;
+  --bg-tertiary: #1A374D;
+  --text-primary: #F5EFE6;
+  --text-secondary: #A8C5D6;
+  --text-muted: #5E8399;
+  --accent: #FF725E;
+  --accent-light: rgba(255, 114, 94, 0.15);
+  --accent-glow: rgba(255, 114, 94, 0.35);
+  --cta: #D4AF37;
+  --cta-hover: #E8C96A;
+  --cta-glow: rgba(212, 175, 55, 0.5);
+  --border: rgba(245, 239, 230, 0.08);
+  --card-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+  --card-shadow-hover: 0 12px 40px rgba(0, 0, 0, 0.5);
+  --overlay: rgba(11, 22, 34, 0.75);
+  --glass-bg: rgba(19, 35, 55, 0.8);
+  --glass-border: rgba(255, 255, 255, 0.08);
+}
+/* ============================================================
+   BASE â€” Reset, Typography, Layout Utilities
+   ============================================================ */
+
+/* â”€â”€ CSS Reset â”€â”€ */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--nav-height);
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--text-primary);
+  background-color: var(--bg-primary);
+  transition: background-color var(--transition-theme), color var(--transition-theme);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+  font-family: inherit;
+  border: none;
+  background: none;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+/* â”€â”€ Typography â”€â”€ */
+h1, h2, h3, h4 {
+  font-family: 'Playfair Display', Georgia, serif;
+  line-height: 1.2;
+  color: var(--text-primary);
+  transition: color var(--transition-theme);
+}
+
+h1 {
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+h2 {
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  font-weight: 600;
+}
+
+h3 {
+  font-size: clamp(1.2rem, 2vw, 1.5rem);
+  font-weight: 600;
+}
+
+p {
+  color: var(--text-secondary);
+  transition: color var(--transition-theme);
+}
+
+.section-tag {
+  display: inline-block;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--accent);
+  margin-bottom: 1rem;
+  position: relative;
+  padding-left: 2.5rem;
+}
+
+.section-tag::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 2rem;
+  height: 2px;
+  background: var(--accent);
+  transform: translateY(-50%);
+}
+
+.section-subtitle {
+  font-size: clamp(1rem, 1.5vw, 1.15rem);
+  color: var(--text-muted);
+  max-width: 600px;
+  margin-top: 1rem;
+}
+
+/* â”€â”€ Layout Utilities â”€â”€ */
+.container {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 clamp(1.5rem, 4vw, 3rem);
+}
+
+.section {
+  padding: var(--section-padding) 0;
+  position: relative;
+  transition: background-color var(--transition-theme);
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: clamp(3rem, 6vw, 5rem);
+}
+
+.section-header .section-subtitle {
+  margin-left: auto;
+  margin-right: auto;
+}
+/* ============================================================
+   SHARED COMPONENTS â€” Buttons, Cards, Wave Dividers
+   ============================================================ */
+
+/* â”€â”€ Buttons â”€â”€ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.875rem 2rem;
+  border-radius: 50px;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  transition: all var(--transition-base);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--gold-leaf), var(--gold-leaf-light));
+  color: #1A1A1A;
+  box-shadow: 0 4px 20px var(--cta-glow);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px var(--cta-glow);
+}
+
+.btn-primary::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -60%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  transform: rotate(30deg);
+  transition: left 0.6s ease;
+}
+
+.btn-primary:hover::after {
+  left: 100%;
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--text-primary);
+  border: 2px solid var(--border);
+  backdrop-filter: blur(4px);
+}
+
+.btn-secondary:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  transform: translateY(-2px);
+}
+
+.btn-ghost {
+  background: var(--glass-bg);
+  color: var(--text-primary);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+}
+
+.btn-ghost:hover {
+  background: var(--accent-light);
+  border-color: var(--accent);
+}
+
+.btn-icon {
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+/* â”€â”€ Cards â”€â”€ */
+.card {
+  background: var(--bg-secondary);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: var(--card-shadow);
+  transition: all var(--transition-base);
+  border: 1px solid var(--border);
+}
+
+.card:hover {
+  box-shadow: var(--card-shadow-hover);
+  transform: translateY(-4px);
+}
+
+.card-img {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+}
+
+.card-body {
+  padding: 1.5rem;
+}
+
+/* â”€â”€ Wave SVG Dividers â”€â”€ */
+.wave-divider {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+}
+
+.wave-divider svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.wave-divider .wave-fill {
+  fill: var(--bg-primary);
+  transition: fill var(--transition-theme);
+}
+/* ============================================================
+   ANIMATIONS â€” Scroll Reveal & Keyframes
+   ============================================================ */
+
+/* â”€â”€ Scroll Reveal â”€â”€ */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-40px);
+  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.reveal-left.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.reveal-right {
+  opacity: 0;
+  transform: translateX(40px);
+  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.reveal-right.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.reveal-scale {
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.reveal-scale.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Staggered delays */
+.delay-1 { transition-delay: 0.1s; }
+.delay-2 { transition-delay: 0.2s; }
+.delay-3 { transition-delay: 0.3s; }
+.delay-4 { transition-delay: 0.4s; }

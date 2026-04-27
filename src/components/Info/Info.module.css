@@ -1,0 +1,22 @@
+.infoSection { background: var(--bg-secondary); }
+.infoGrid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
+.infoMap { border-radius: 24px; overflow: hidden; height: 450px; border: 1px solid var(--border); }
+.infoMap iframe { width: 100%; height: 100%; border: 0; }
+.infoDetails { display: flex; flex-direction: column; gap: 1.5rem; }
+.infoCard { display: flex; align-items: flex-start; gap: 1rem; padding: 1.5rem; border-radius: 16px; background: var(--bg-primary); border: 1px solid var(--border); transition: all var(--transition-base); }
+.infoCard:hover { transform: translateX(8px); box-shadow: var(--card-shadow); }
+.infoCardIcon { width: 48px; height: 48px; border-radius: 12px; background: var(--accent-light); display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 1.2rem; }
+.infoCard h4 { font-family: var(--font-sans), sans-serif; font-size: 0.95rem; font-weight: 600; margin-bottom: 0.25rem; }
+.infoCard p { font-size: 0.85rem; }
+
+/* Accordion */
+.accordion { margin-top: 1.5rem; }
+.accordionItem { border: 1px solid var(--border); border-radius: 12px; margin-bottom: 0.75rem; overflow: hidden; background: var(--bg-primary); }
+.accordionTrigger { width: 100%; padding: 1rem 1.25rem; display: flex; justify-content: space-between; align-items: center; font-family: var(--font-sans), sans-serif; font-weight: 600; font-size: 0.9rem; color: var(--text-primary); cursor: pointer; transition: background var(--transition-fast); background: transparent; border: none; outline: none; }
+.accordionTrigger:hover { background: var(--accent-light); }
+.accordionIcon { transition: transform var(--transition-base); font-size: 1.2rem; }
+.accordionItem.open .accordionIcon { transform: rotate(45deg); }
+.accordionContent { max-height: 0; overflow: hidden; transition: max-height var(--transition-base); }
+.accordionContentInner { padding: 0 1.25rem 1rem; font-size: 0.9rem; color: var(--text-secondary); line-height: 1.7; }
+
+@media (max-width: 1024px) { .infoGrid { grid-template-columns: 1fr; } }
