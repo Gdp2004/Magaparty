@@ -1,5 +1,6 @@
 import './Events.css';
 import { getEvents, isSupabaseConfigured } from '../../services/supabase.js';
+import { escapeHtml, safeLog } from '../../utils/security.js';
 
 export function template() {
   return `
@@ -37,8 +38,16 @@ export function init() {
       const m = ['Gen','Feb','Mar','Apr','Mag','Giu','Lug','Ago','Set','Ott','Nov','Dic'];
       c.innerHTML = events.map(ev => {
         const d = new Date(ev.event_date);
-        return `<div class="event-card"><div class="event-card-header"><div class="event-date"><span class="event-date-day">${d.getDate().toString().padStart(2,'0')}</span><span class="event-date-month">${m[d.getMonth()]}</span></div>${ev.genre?`<span class="event-genre">${ev.genre}</span>`:''}</div><div class="event-card-body"><h3>${ev.event_name}</h3><p class="event-dj">${ev.dj_name||'&nbsp;'}</p><p>${ev.description||''}</p>${ev.event_time?`<div class="event-time">🕐 ${ev.event_time.substring(0,5)}</div>`:''}</div></div>`;
+        const day = d.getDate().toString().padStart(2,'0');
+        const month = m[d.getMonth()] || '';
+        // XSS Prevention: escape all DB-sourced values
+        const name = escapeHtml(ev.event_name);
+        const genre = ev.genre ? escapeHtml(ev.genre) : '';
+        const dj = ev.dj_name ? escapeHtml(ev.dj_name) : '&nbsp;';
+        const desc = escapeHtml(ev.description || '');
+        const time = ev.event_time ? escapeHtml(ev.event_time.substring(0,5)) : '';
+        return `<div class="event-card"><div class="event-card-header"><div class="event-date"><span class="event-date-day">${day}</span><span class="event-date-month">${month}</span></div>${genre?`<span class="event-genre">${genre}</span>`:''}</div><div class="event-card-body"><h3>${name}</h3><p class="event-dj">${dj}</p><p>${desc}</p>${time?`<div class="event-time">🕐 ${time}</div>`:''}</div></div>`;
       }).join('');
-    }).catch(() => console.log('Using static events'));
+    }).catch(() => safeLog('log', 'Using static events'));
   }
 }

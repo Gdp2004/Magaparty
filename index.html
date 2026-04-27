@@ -10,6 +10,23 @@
   <meta property="og:description" content="Beach club premium a Battipaglia. Relax in famiglia di giorno, musica e drink al tramonto." />
   <meta property="og:type" content="website" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+  <!-- Security Headers -->
+  <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+  <meta http-equiv="X-Frame-Options" content="SAMEORIGIN" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <meta http-equiv="Content-Security-Policy" content="
+    default-src 'self';
+    script-src 'self' 'unsafe-inline';
+    style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+    font-src 'self' https://fonts.gstatic.com;
+    img-src 'self' data: blob: https:;
+    frame-src https://www.google.com https://maps.google.com;
+    connect-src 'self' https://*.supabase.co https://*.supabase.in;
+    object-src 'none';
+    base-uri 'self';
+    form-action 'self' https://wa.me;
+  " />
 </head>
 <body>
   <div id="app"></div>

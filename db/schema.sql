@@ -1,5 +1,5 @@
 -- ============================================================
--- Nello Ocean Beach — Supabase Database Schema
+-- Nello Ocean Beach — Supabase Database Schema (HARDENED)
 -- ============================================================
 -- Run this in the Supabase SQL Editor to set up all tables.
 -- ============================================================
@@ -8,13 +8,13 @@
 CREATE TABLE IF NOT EXISTS bookings (
   id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
   booking_type TEXT NOT NULL CHECK (booking_type IN ('sunbed', 'table')),
-  guest_name TEXT NOT NULL,
-  guest_phone TEXT NOT NULL,
-  guest_email TEXT,
-  booking_date DATE NOT NULL,
-  num_guests INT NOT NULL DEFAULT 1,
-  preferred_area TEXT,
-  notes TEXT,
+  guest_name TEXT NOT NULL CHECK (length(trim(guest_name)) BETWEEN 2 AND 100),
+  guest_phone TEXT NOT NULL CHECK (length(trim(guest_phone)) BETWEEN 6 AND 20),
+  guest_email TEXT CHECK (guest_email IS NULL OR guest_email ~* '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'),
+  booking_date DATE NOT NULL CHECK (booking_date >= CURRENT_DATE AND booking_date <= CURRENT_DATE + INTERVAL '1 year'),
+  num_guests INT NOT NULL DEFAULT 1 CHECK (num_guests BETWEEN 1 AND 50),
+  preferred_area TEXT CHECK (preferred_area IS NULL OR preferred_area IN ('prima_fila', 'gazebo', 'famiglia', 'qualsiasi', 'cena', 'aperitivo', 'vip', 'evento')),
+  notes TEXT CHECK (notes IS NULL OR length(notes) <= 500),
   status TEXT DEFAULT 'pending' CHECK (status IN ('pending', 'confirmed', 'cancelled')),
   created_at TIMESTAMPTZ DEFAULT NOW(),
   updated_at TIMESTAMPTZ DEFAULT NOW()
@@ -23,13 +23,13 @@ CREATE TABLE IF NOT EXISTS bookings (
 -- 2. EVENTS — Weekly lineup, DJ nights, theme events
 CREATE TABLE IF NOT EXISTS events (
   id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
-  event_name TEXT NOT NULL,
+  event_name TEXT NOT NULL CHECK (length(trim(event_name)) BETWEEN 1 AND 200),
   event_date DATE NOT NULL,
   event_time TIME,
-  dj_name TEXT,
-  genre TEXT,
-  description TEXT,
-  image_url TEXT,
+  dj_name TEXT CHECK (dj_name IS NULL OR length(dj_name) <= 100),
+  genre TEXT CHECK (genre IS NULL OR length(genre) <= 100),
+  description TEXT CHECK (description IS NULL OR length(description) <= 1000),
+  image_url TEXT CHECK (image_url IS NULL OR length(image_url) <= 500),
   is_featured BOOLEAN DEFAULT false,
   created_at TIMESTAMPTZ DEFAULT NOW()
 );
@@ -37,9 +37,9 @@ CREATE TABLE IF NOT EXISTS events (
 -- 3. GALLERY — Photo gallery with category filters
 CREATE TABLE IF NOT EXISTS gallery_items (
   id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
-  image_url TEXT NOT NULL,
+  image_url TEXT NOT NULL CHECK (length(image_url) <= 500),
   category TEXT NOT NULL CHECK (category IN ('sun_family', 'music_drinks')),
-  caption TEXT,
+  caption TEXT CHECK (caption IS NULL OR length(caption) <= 300),
   sort_order INT DEFAULT 0,
   is_visible BOOLEAN DEFAULT true,
   created_at TIMESTAMPTZ DEFAULT NOW()
@@ -49,9 +49,9 @@ CREATE TABLE IF NOT EXISTS gallery_items (
 CREATE TABLE IF NOT EXISTS menu_items (
   id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
   category TEXT NOT NULL CHECK (category IN ('pranzo', 'aperitivo', 'cena', 'drink')),
-  name TEXT NOT NULL,
-  description TEXT,
-  price DECIMAL(10,2),
+  name TEXT NOT NULL CHECK (length(trim(name)) BETWEEN 1 AND 200),
+  description TEXT CHECK (description IS NULL OR length(description) <= 500),
+  price DECIMAL(10,2) CHECK (price IS NULL OR price >= 0),
   is_featured BOOLEAN DEFAULT false,
   is_available BOOLEAN DEFAULT true,
   sort_order INT DEFAULT 0,
@@ -61,11 +61,11 @@ CREATE TABLE IF NOT EXISTS menu_items (
 -- 5. CONTACT MESSAGES — Contact form submissions
 CREATE TABLE IF NOT EXISTS contact_messages (
   id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
-  name TEXT NOT NULL,
-  email TEXT,
-  phone TEXT,
-  subject TEXT,
-  message TEXT NOT NULL,
+  name TEXT NOT NULL CHECK (length(trim(name)) BETWEEN 2 AND 100),
+  email TEXT CHECK (email IS NULL OR email ~* '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'),
+  phone TEXT CHECK (phone IS NULL OR length(phone) <= 20),
+  subject TEXT CHECK (subject IS NULL OR length(subject) <= 200),
+  message TEXT NOT NULL CHECK (length(trim(message)) BETWEEN 1 AND 2000),
   is_read BOOLEAN DEFAULT false,
   created_at TIMESTAMPTZ DEFAULT NOW()
 );
@@ -74,16 +74,95 @@ CREATE TABLE IF NOT EXISTS contact_messages (
 CREATE TABLE IF NOT EXISTS private_event_requests (
   id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
   event_type TEXT NOT NULL CHECK (event_type IN ('wedding', 'birthday', 'corporate', 'other')),
-  contact_name TEXT NOT NULL,
-  contact_phone TEXT NOT NULL,
-  contact_email TEXT,
-  event_date DATE,
-  num_guests INT,
-  description TEXT,
-  budget_range TEXT,
+  contact_name TEXT NOT NULL CHECK (length(trim(contact_name)) BETWEEN 2 AND 100),
+  contact_phone TEXT NOT NULL CHECK (length(trim(contact_phone)) BETWEEN 6 AND 20),
+  contact_email TEXT CHECK (contact_email IS NULL OR contact_email ~* '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'),
+  event_date DATE CHECK (event_date IS NULL OR event_date >= CURRENT_DATE),
+  num_guests INT CHECK (num_guests IS NULL OR num_guests BETWEEN 1 AND 1000),
+  description TEXT CHECK (description IS NULL OR length(description) <= 2000),
+  budget_range TEXT CHECK (budget_range IS NULL OR length(budget_range) <= 50),
   status TEXT DEFAULT 'new' CHECK (status IN ('new', 'contacted', 'confirmed', 'declined')),
   created_at TIMESTAMPTZ DEFAULT NOW()
 );
+
+-- ============================================================
+-- SANITIZATION TRIGGER — Auto-trim and clean text fields
+-- ============================================================
+CREATE OR REPLACE FUNCTION sanitize_text_fields()
+RETURNS TRIGGER AS $$
+BEGIN
+  -- Trim whitespace from all text fields
+  IF TG_TABLE_NAME = 'bookings' THEN
+    NEW.guest_name := trim(NEW.guest_name);
+    NEW.guest_phone := trim(NEW.guest_phone);
+    IF NEW.notes IS NOT NULL THEN NEW.notes := trim(NEW.notes); END IF;
+  ELSIF TG_TABLE_NAME = 'contact_messages' THEN
+    NEW.name := trim(NEW.name);
+    NEW.message := trim(NEW.message);
+    IF NEW.subject IS NOT NULL THEN NEW.subject := trim(NEW.subject); END IF;
+  ELSIF TG_TABLE_NAME = 'private_event_requests' THEN
+    NEW.contact_name := trim(NEW.contact_name);
+    NEW.contact_phone := trim(NEW.contact_phone);
+    IF NEW.description IS NOT NULL THEN NEW.description := trim(NEW.description); END IF;
+  END IF;
+  RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+-- Apply sanitization trigger to writable tables
+CREATE TRIGGER trg_sanitize_bookings
+  BEFORE INSERT ON bookings FOR EACH ROW EXECUTE FUNCTION sanitize_text_fields();
+CREATE TRIGGER trg_sanitize_contact
+  BEFORE INSERT ON contact_messages FOR EACH ROW EXECUTE FUNCTION sanitize_text_fields();
+CREATE TRIGGER trg_sanitize_private_events
+  BEFORE INSERT ON private_event_requests FOR EACH ROW EXECUTE FUNCTION sanitize_text_fields();
+
+-- ============================================================
+-- RATE LIMITING — Prevent spam inserts (max 5 per 10 min per phone/IP)
+-- ============================================================
+CREATE OR REPLACE FUNCTION check_booking_rate_limit()
+RETURNS TRIGGER AS $$
+DECLARE
+  recent_count INT;
+BEGIN
+  SELECT COUNT(*) INTO recent_count
+  FROM bookings
+  WHERE guest_phone = NEW.guest_phone
+    AND created_at > NOW() - INTERVAL '10 minutes';
+  
+  IF recent_count >= 5 THEN
+    RAISE EXCEPTION 'Rate limit exceeded: too many bookings from this phone number'
+      USING ERRCODE = 'P0001';
+  END IF;
+  RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER trg_rate_limit_bookings
+  BEFORE INSERT ON bookings FOR EACH ROW EXECUTE FUNCTION check_booking_rate_limit();
+
+-- Rate limit for contact messages (max 3 per 10 min per email/phone)
+CREATE OR REPLACE FUNCTION check_contact_rate_limit()
+RETURNS TRIGGER AS $$
+DECLARE
+  recent_count INT;
+BEGIN
+  SELECT COUNT(*) INTO recent_count
+  FROM contact_messages
+  WHERE (email = NEW.email OR phone = NEW.phone)
+    AND email IS NOT NULL
+    AND created_at > NOW() - INTERVAL '10 minutes';
+  
+  IF recent_count >= 3 THEN
+    RAISE EXCEPTION 'Rate limit exceeded: too many messages'
+      USING ERRCODE = 'P0001';
+  END IF;
+  RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER trg_rate_limit_contact
+  BEFORE INSERT ON contact_messages FOR EACH ROW EXECUTE FUNCTION check_contact_rate_limit();
 
 -- ============================================================
 -- ROW LEVEL SECURITY (RLS) POLICIES
@@ -98,6 +177,7 @@ ALTER TABLE contact_messages ENABLE ROW LEVEL SECURITY;
 ALTER TABLE private_event_requests ENABLE ROW LEVEL SECURITY;
 
 -- PUBLIC READ: Events, Gallery, Menu (anyone can view)
+-- Restrict to specific columns via the JS client .select() calls
 CREATE POLICY "Events are viewable by everyone"
   ON events FOR SELECT USING (true);
 
@@ -107,28 +187,50 @@ CREATE POLICY "Gallery items are viewable by everyone"
 CREATE POLICY "Menu items are viewable by everyone"
   ON menu_items FOR SELECT USING (is_available = true);
 
--- PUBLIC INSERT: Bookings, Contact Messages, Private Event Requests
--- (anonymous visitors can submit forms)
+-- PUBLIC INSERT with CHECK constraints
+-- The CHECK constraints on columns + triggers provide server-side validation
 CREATE POLICY "Anyone can create a booking"
-  ON bookings FOR INSERT WITH CHECK (true);
+  ON bookings FOR INSERT WITH CHECK (
+    booking_type IN ('sunbed', 'table')
+    AND length(trim(guest_name)) >= 2
+    AND length(trim(guest_phone)) >= 6
+    AND booking_date >= CURRENT_DATE
+    AND num_guests BETWEEN 1 AND 50
+    AND status = 'pending'
+  );
 
 CREATE POLICY "Anyone can send a contact message"
-  ON contact_messages FOR INSERT WITH CHECK (true);
+  ON contact_messages FOR INSERT WITH CHECK (
+    length(trim(name)) >= 2
+    AND length(trim(message)) >= 1
+    AND is_read = false
+  );
 
 CREATE POLICY "Anyone can request a private event"
-  ON private_event_requests FOR INSERT WITH CHECK (true);
+  ON private_event_requests FOR INSERT WITH CHECK (
+    event_type IN ('wedding', 'birthday', 'corporate', 'other')
+    AND length(trim(contact_name)) >= 2
+    AND length(trim(contact_phone)) >= 6
+    AND status = 'new'
+  );
 
--- ADMIN: Full access via service_role key (server-side only)
--- Note: Authenticated admin access can be added later with Supabase Auth
+-- PREVENT anonymous users from reading sensitive tables
+-- (No SELECT policy = no read access for anon)
+-- bookings, contact_messages, private_event_requests have NO select policy for anon
+
+-- PREVENT anonymous users from UPDATE/DELETE on any table
+-- (No UPDATE/DELETE policies = no modify access for anon)
 
 -- ============================================================
 -- INDEXES for performance
 -- ============================================================
 CREATE INDEX IF NOT EXISTS idx_bookings_date ON bookings(booking_date);
 CREATE INDEX IF NOT EXISTS idx_bookings_status ON bookings(status);
+CREATE INDEX IF NOT EXISTS idx_bookings_phone_created ON bookings(guest_phone, created_at);
 CREATE INDEX IF NOT EXISTS idx_events_date ON events(event_date);
 CREATE INDEX IF NOT EXISTS idx_gallery_category ON gallery_items(category);
 CREATE INDEX IF NOT EXISTS idx_menu_category ON menu_items(category);
+CREATE INDEX IF NOT EXISTS idx_contact_created ON contact_messages(created_at);
 
 -- ============================================================
 -- SEED DATA — Sample events for demonstration

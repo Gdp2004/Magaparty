@@ -1,5 +1,6 @@
 import './Restaurant.css';
 import { getMenuItems, isSupabaseConfigured } from '../../services/supabase.js';
+import { escapeHtml, safeLog } from '../../utils/security.js';
 
 const menuData = {
   pranzo: { title: 'Pranzo', desc: 'Piatti freschi e leggeri, perfetti per una pausa gourmet vista mare', items: [
@@ -35,11 +36,17 @@ function renderMenu(category) {
   if (titleEl) titleEl.textContent = data.title;
   if (descEl) descEl.textContent = data.desc;
   if (listEl) {
-    listEl.innerHTML = data.items.map(item => `
+    listEl.innerHTML = data.items.map(item => {
+      // XSS Prevention: escape DB-sourced values
+      const name = escapeHtml(item.name);
+      const desc = escapeHtml(item.desc);
+      const price = Number.isFinite(item.price) ? item.price : 0;
+      return `
       <div class="menu-item ${item.featured ? 'featured' : ''}">
-        <div class="menu-item-info"><h4>${item.name}</h4><p>${item.desc}</p></div>
-        <span class="menu-item-price">€${item.price}</span>
-      </div>`).join('');
+        <div class="menu-item-info"><h4>${name}</h4><p>${desc}</p></div>
+        <span class="menu-item-price">€${price}</span>
+      </div>`;
+    }).join('');
   }
 }
 
@@ -98,5 +105,5 @@ async function loadMenuFromDB(category) {
       menuData[category].items = items.map(i => ({ name: i.name, desc: i.description || '', price: i.price, featured: i.is_featured }));
       renderMenu(category);
     }
-  } catch (e) { console.log('Using static menu data'); }
+  } catch (e) { safeLog('log', 'Using static menu data'); }
 }
