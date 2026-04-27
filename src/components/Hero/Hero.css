@@ -1,0 +1,215 @@
+/* ── Hero Section ── */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.hero-bg-day,
+.hero-bg-night {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  transition: opacity var(--transition-theme);
+}
+
+.hero-bg-day {
+  background-image: url('/images/hero-day.png');
+  opacity: 1;
+}
+
+.hero-bg-night {
+  background-image: url('/images/hero-night.png');
+  opacity: 0;
+}
+
+[data-theme="night"] .hero-bg-day {
+  opacity: 0;
+}
+
+[data-theme="night"] .hero-bg-night {
+  opacity: 1;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    180deg,
+    rgba(26, 55, 77, 0.15) 0%,
+    rgba(26, 55, 77, 0.4) 50%,
+    var(--bg-primary) 100%
+  );
+  transition: background var(--transition-theme);
+}
+
+[data-theme="night"] .hero-overlay {
+  background: linear-gradient(
+    180deg,
+    rgba(11, 22, 34, 0.2) 0%,
+    rgba(11, 22, 34, 0.55) 50%,
+    var(--bg-primary) 100%
+  );
+}
+
+.hero-content {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  max-width: 900px;
+  padding: 0 2rem;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1.25rem;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 50px;
+  backdrop-filter: blur(12px);
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  margin-bottom: 1.5rem;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.hero h1 {
+  color: #FFFFFF;
+  text-shadow: 0 2px 30px rgba(0, 0, 0, 0.3);
+  margin-bottom: 1rem;
+}
+
+.hero-subtitle {
+  font-size: clamp(1rem, 2vw, 1.3rem);
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: 2.5rem;
+  font-weight: 300;
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.2);
+}
+
+.hero-ctas {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.hero-cta-day {
+  background: linear-gradient(135deg, var(--mediterranean-azure), #3DA8A6);
+  color: #FFFFFF;
+  padding: 1rem 2.5rem;
+  font-size: 1rem;
+}
+
+.hero-cta-day:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 30px rgba(79, 189, 186, 0.4);
+}
+
+.hero-cta-night {
+  background: linear-gradient(135deg, var(--sunset-coral), #E5604E);
+  color: #FFFFFF;
+  padding: 1rem 2.5rem;
+  font-size: 1rem;
+}
+
+.hero-cta-night:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 30px rgba(255, 114, 94, 0.4);
+}
+
+/* Sunset Countdown */
+.sunset-countdown {
+  position: absolute;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.75rem 1.25rem;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  backdrop-filter: blur(16px);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  transition: all var(--transition-theme);
+}
+
+.sunset-icon {
+  font-size: 1.2rem;
+}
+
+/* Scroll indicator */
+.scroll-indicator {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  animation: bounce 2s ease-in-out infinite;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(8px); }
+}
+
+.scroll-indicator-line {
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(to bottom, rgba(255,255,255,0.6), transparent);
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .hero-ctas {
+    flex-direction: column;
+    align-items: center;
+  }
+  .hero-ctas .btn {
+    width: 100%;
+    max-width: 300px;
+    justify-content: center;
+  }
+  .sunset-countdown {
+    bottom: auto;
+    top: calc(var(--nav-height) + 1rem);
+    right: 1rem;
+    font-size: 0.75rem;
+    padding: 0.5rem 1rem;
+  }
+  .scroll-indicator {
+    display: none;
+  }
+}

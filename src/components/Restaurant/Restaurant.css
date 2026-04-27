@@ -1,0 +1,47 @@
+/* ── Restaurant Section ── */
+.restaurant-section { background: var(--bg-secondary); }
+
+.menu-tabs { display: flex; justify-content: center; gap: 0.5rem; margin-bottom: 3rem; flex-wrap: wrap; }
+
+.menu-tab {
+  padding: 0.75rem 1.75rem; border-radius: 50px;
+  font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em;
+  color: var(--text-muted); background: transparent; border: 2px solid var(--border);
+  transition: all var(--transition-base); cursor: pointer;
+}
+
+.menu-tab.active, .menu-tab:hover {
+  color: var(--bg-primary); background: var(--accent); border-color: var(--accent);
+}
+
+.menu-content { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
+.menu-image { border-radius: 24px; overflow: hidden; height: 500px; position: relative; }
+.menu-image img { width: 100%; height: 100%; object-fit: cover; }
+
+.menu-image-overlay {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  padding: 2rem; background: linear-gradient(to top, rgba(0,0,0,0.7), transparent); color: white;
+}
+.menu-image-overlay h3 { color: white; font-size: 1.5rem; margin-bottom: 0.25rem; }
+.menu-image-overlay p { color: rgba(255,255,255,0.8); font-size: 0.9rem; }
+
+.menu-items-list { display: flex; flex-direction: column; gap: 1.5rem; }
+
+.menu-item {
+  display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem;
+  padding: 1.25rem; border-radius: 16px; background: var(--bg-primary);
+  border: 1px solid var(--border); transition: all var(--transition-base);
+}
+.menu-item:hover { transform: translateX(8px); box-shadow: var(--card-shadow); }
+.menu-item-info h4 { font-family: 'Inter', sans-serif; font-size: 1rem; font-weight: 600; margin-bottom: 0.25rem; }
+.menu-item-info p { font-size: 0.85rem; color: var(--text-muted); }
+
+.menu-item-price {
+  font-family: 'Playfair Display', serif; font-size: 1.25rem; font-weight: 700;
+  color: var(--gold-leaf); white-space: nowrap;
+}
+
+.menu-item.featured { border-left: 3px solid var(--gold-leaf); }
+
+/* ── Responsive ── */
+@media (max-width: 1024px) { .menu-content { grid-template-columns: 1fr; } .menu-image { height: 300px; } }

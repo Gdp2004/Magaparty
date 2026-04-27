@@ -1,0 +1,68 @@
+/* ── Beach Section ── */
+.beach-section { background: var(--bg-primary); }
+
+.beach-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.beach-card {
+  background: var(--bg-secondary);
+  border-radius: 24px;
+  padding: 2.5rem 2rem;
+  text-align: center;
+  border: 1px solid var(--border);
+  transition: all var(--transition-base);
+  position: relative;
+  overflow: hidden;
+}
+
+.beach-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--mediterranean-azure), var(--gold-leaf));
+  opacity: 0;
+  transition: opacity var(--transition-base);
+}
+
+.beach-card:hover { transform: translateY(-8px); box-shadow: var(--card-shadow-hover); }
+.beach-card:hover::before { opacity: 1; }
+
+.beach-card-icon {
+  width: 72px; height: 72px;
+  border-radius: 20px;
+  background: var(--accent-light);
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 1.5rem;
+  font-size: 2rem;
+  transition: all var(--transition-base);
+}
+
+.beach-card:hover .beach-card-icon { background: var(--accent); transform: scale(1.1); }
+.beach-card:hover .beach-card-icon svg { color: white; }
+.beach-card h3 { margin-bottom: 0.75rem; }
+.beach-card p { font-size: 0.95rem; line-height: 1.6; }
+
+.beach-feature-img {
+  border-radius: 24px;
+  overflow: hidden;
+  margin-top: 3rem;
+  max-height: 420px;
+  position: relative;
+}
+
+.beach-feature-img img { width: 100%; height: 420px; object-fit: cover; }
+
+.beach-feature-img::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(to bottom, transparent 60%, var(--bg-primary));
+  pointer-events: none;
+}
+
+/* ── Responsive ── */
+@media (max-width: 1024px) { .beach-grid { grid-template-columns: 1fr; } }
+@media (max-width: 768px)  { .beach-grid { grid-template-columns: 1fr; gap: 1.5rem; } }
