@@ -20,3 +20,12 @@
 .accordionContentInner { padding: 0 1.25rem 1rem; font-size: 0.9rem; color: var(--text-secondary); line-height: 1.7; }
 
 @media (max-width: 1024px) { .infoGrid { grid-template-columns: 1fr; } }
+@media (max-width: 768px) {
+  .infoGrid { grid-template-columns: 1fr; gap: 1rem; }
+  .infoDetails { gap: 1rem; }
+}
+@media (max-width: 480px) {
+  .infoMap { height: 280px; }
+  .infoCard { padding: 1rem; }
+  .accordionTrigger { min-height: 44px; }
+}

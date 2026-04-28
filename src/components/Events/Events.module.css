@@ -22,6 +22,8 @@
   gap: 1.5rem;
   padding: 2rem 0 4rem;
   scroll-snap-type: x mandatory;
+  scroll-padding-left: 1rem;
+  -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
   -ms-overflow-style: none;
 }
@@ -62,4 +64,10 @@
 
 /* ── Responsive ── */
 @media (max-width: 1024px) { .eventsBottom { grid-template-columns: 1fr; } }
-@media (max-width: 480px)  { .eventCard { min-width: 280px; } }
+@media (max-width: 480px)  {
+  .eventCard { min-width: 280px; width: 280px; }
+  .vipCard, .privateCard { padding: 1.75rem 1.5rem; }
+}
+@media (max-width: 360px) {
+  .eventCard { min-width: min(85vw, 280px); width: min(85vw, 280px); }
+}

@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { Inter, DM_Serif_Display } from 'next/font/google';
 import './globals.css';
 import { ThemeProvider } from '@/components/ThemeProvider';
@@ -25,6 +25,17 @@ export const metadata: Metadata = {
     description: "Beach club premium a Battipaglia. Relax in famiglia di giorno, musica e drink al tramonto.",
     type: "website",
   },
+};
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#F5EFE6' },
+    { media: '(prefers-color-scheme: dark)', color: '#0B1622' },
+  ],
+  viewportFit: 'cover',
 };
 
 import { ScrollReveal } from '@/components/ScrollReveal';

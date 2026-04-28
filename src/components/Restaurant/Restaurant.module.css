@@ -44,3 +44,12 @@
 
 /* ── Responsive ── */
 @media (max-width: 1024px) { .menuContent { grid-template-columns: 1fr; } .menuImage { height: 300px; } }
+@media (max-width: 480px) {
+  .menuContent { grid-template-columns: 1fr; gap: 1.5rem; }
+  .menuImage { height: 220px; }
+  .menuTabs { gap: 0.4rem; margin-bottom: 2rem; }
+  .menuTab { padding: 0.75rem 1.25rem; min-height: 44px; font-size: 0.75rem; }
+  .menuItem { padding: 1rem; }
+  .menuItemInfo h4 { font-size: 0.95rem; }
+  .menuItemPrice { font-size: 1.1rem; }
+}
