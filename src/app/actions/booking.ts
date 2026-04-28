@@ -2,7 +2,6 @@
 
 import { headers } from 'next/headers';
 import { z } from 'zod';
-import { headers } from 'next/headers';
 import { supabase, isSupabaseConfigured } from '@/lib/supabase';
 import { sanitizeText, sanitizePhone } from '@/lib/sanitize';
 
