@@ -1,0 +1,23 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install *)",
+      "Bash(npx tsc *)",
+      "Bash(node -e \"const p = require\\('./node_modules/stripe/package.json'\\); console.log\\('version:', p.version\\);\")",
+      "Bash(echo \"EXIT=$?\")",
+      "Bash(npx next *)",
+      "Bash(gh pr *)",
+      "Bash(git check-ignore *)",
+      "PowerShell(gh pr list --head claude/stupefied-sammet-634db0 --json url,number,title 2>&1)",
+      "Read(//c/Program Files/GitHub CLI/**)",
+      "Read(//c/Users/gdpal/AppData/Local/Programs/GitHub CLI/**)",
+      "Bash(command -v gh.exe)",
+      "Read(//c/ProgramData/chocolatey/bin/**)",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(git push *)",
+      "Bash(/c/Users/gdpal/scoop/shims/scoop install *)",
+      "Bash(/c/Users/gdpal/scoop/shims/gh auth *)"
+    ]
+  }
+}
