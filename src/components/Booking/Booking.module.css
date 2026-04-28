@@ -34,4 +34,19 @@
 .formSelect:invalid:not(:placeholder-shown) { border-color: #E53E3E; }
 
 @media (max-width: 768px)  { .formRow { grid-template-columns: 1fr; } }
-@media (max-width: 480px)  { .bookingContainer { border-radius: 20px; } .bookingForm { padding: 1.5rem; } }
+@media (max-width: 480px)  {
+  .bookingContainer { border-radius: 20px; }
+  .bookingForm { padding: 1.5rem 1.25rem; }
+  .bookingTab { padding: 1rem 0.5rem; min-height: 44px; font-size: 0.85rem; }
+  .formInput, .formSelect, .formTextarea {
+    min-height: 44px;
+    font-size: 16px;
+    padding: 0.75rem 0.875rem;
+  }
+  .formTextarea { min-height: 110px; }
+  .bookingSubmit {
+    min-height: 48px;
+    width: 100%;
+    font-size: 1rem;
+  }
+}

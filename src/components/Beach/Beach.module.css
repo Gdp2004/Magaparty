@@ -65,3 +65,10 @@
 /* ── Responsive ── */
 @media (max-width: 1024px) { .beachGrid { grid-template-columns: 1fr; } }
 @media (max-width: 768px)  { .beachGrid { grid-template-columns: 1fr; gap: 1.5rem; } }
+@media (max-width: 480px) {
+  .beachGrid { grid-template-columns: 1fr; gap: 1rem; }
+  .beachCard { padding: 1.75rem 1.25rem; }
+  .beachCardIcon { width: 56px; height: 56px; font-size: 1.5rem; margin-bottom: 1rem; }
+  .beachFeatureImg { margin-top: 2rem; max-height: 280px; }
+  .beachFeatureImg img { height: 280px; }
+}

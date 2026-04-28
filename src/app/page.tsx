@@ -6,6 +6,7 @@ import { Restaurant } from '@/components/Restaurant/Restaurant';
 import { Events } from '@/components/Events/Events';
 import { Gallery } from '@/components/Gallery/Gallery';
 import { Booking } from '@/components/Booking/Booking';
+import { Payment } from '@/components/Payment/Payment';
 import { Info } from '@/components/Info/Info';
 import { Footer } from '@/components/Footer/Footer';
 
@@ -20,6 +21,7 @@ export default function Home() {
         <Events />
         <Gallery />
         <Booking />
+        <Payment />
         <Info />
       </main>
       <Footer />

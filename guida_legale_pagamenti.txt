@@ -1,0 +1,1053 @@
+================================================================================
+GUIDA LEGALE E FISCALE PER NELLO OCEAN BEACH
+Vendita online + prenotazioni — Sito Next.js + Stripe + Supabase
+Aggiornata ad aprile 2026 — Normativa italiana ed europea
+================================================================================
+
+
+=== 1. INTRODUZIONE E DISCLAIMER ===
+
+DISCLAIMER IMPORTANTE
+---------------------
+Questa guida e' un riassunto operativo per un sito Next.js + Stripe.
+NON sostituisce un commercialista o un avvocato. Per i dettagli fiscali
+specifici della tua attivita' consulta sempre un professionista.
+
+In particolare:
+- le aliquote IVA, le scadenze e i regimi fiscali possono variare in base
+  alla tua situazione (regime forfettario vs ordinario, fatturato, soci);
+- la classificazione dei prodotti venduti (servizi del tempo libero,
+  somministrazione, vendita di beni) ha implicazioni dirette sul diritto
+  di recesso e sull'IVA: errori qui costano cari;
+- la stesura definitiva di Privacy Policy, Termini e Condizioni e Cookie
+  Policy va validata da un legale, soprattutto se il fatturato online
+  cresce.
+
+A CHI SERVE QUESTA GUIDA
+------------------------
+Al titolare del beach club "Nello Ocean Beach" di Battipaglia (SA), che
+vende online tramite Stripe Checkout 4 prodotti:
+  1) Lettino + ombrellone (giornaliero)
+  2) Aperitivo al Tramonto (data fissa)
+  3) Tavolo VIP (data fissa, p.es. Ferragosto)
+  4) Party Pass / ingresso serata (data fissa)
+e raccoglie prenotazioni gratuite (lettino, tavolo cena) tramite form
+sul sito.
+
+L'obiettivo e' duplice:
+A) Fare il punto sugli adempimenti fiscali e legali per vendere online
+   in Italia nel 2026 (P.IVA, fatturazione elettronica, corrispettivi
+   telematici, IVA, GDPR, Codice del Consumo).
+B) Indicare quali documenti DEVONO essere pubblicati sul sito e cosa
+   devono contenere (Privacy Policy, Cookie Policy, Termini e Condizioni,
+   informativa form prenotazioni, modulo recesso).
+
+COME LEGGERE QUESTA GUIDA
+-------------------------
+- Le sezioni 1-10 spiegano gli obblighi.
+- La sezione 11 e' una checklist operativa numerata: stampala e usala.
+- Le sezioni 12-14 contengono template da copiare/adattare.
+- La sezione 15 raccoglie contatti utili e riferimenti normativi.
+
+Riferimenti normativi principali citati nella guida:
+- Reg. UE 2016/679 (GDPR)
+- D.Lgs. 196/2003 (Codice Privacy, come modificato dal D.Lgs. 101/2018)
+- D.Lgs. 206/2005 (Codice del Consumo)
+- D.Lgs. 70/2003 (commercio elettronico)
+- D.P.R. 633/1972 (IVA)
+- D.Lgs. 127/2015 (fatturazione elettronica e corrispettivi telematici)
+- Direttiva 2002/58/CE (ePrivacy)
+- Provvedimento Garante 10/06/2021 (cookie)
+- DPF UE-USA del 10/07/2023 (trasferimenti dati extra-UE)
+
+
+=== 2. INQUADRAMENTO FISCALE ===
+
+PARTITA IVA
+-----------
+Per vendere online in modo abituale e' obbligatoria la P.IVA.
+Anche se vendi solo 4 prodotti via Stripe e ricevi prenotazioni dal
+form, la vendita online di beni/servizi e' considerata attivita'
+commerciale a tutti gli effetti.
+
+Apertura: tramite ComUnica (Camera di Commercio + Agenzia Entrate +
+INPS + INAIL in un'unica pratica).
+
+CODICI ATECO CONSIGLIATI
+------------------------
+Per un beach club che vende lettini, aperitivi e ingressi serata, i
+codici tipici nel 2026 (classificazione ATECO 2025 in vigore) sono:
+- 56.30.00 — Bar e altri esercizi simili senza cucina (per drink/aperitivi)
+- 56.10.20 — Ristorazione senza somministrazione con preparazione di
+  cibi da asporto / ristorazione con somministrazione (verifica con il
+  commercialista quale variante usare in base al servizio reale)
+- 79.90.20 — Attivita' delle agenzie di intermediazione (utile se
+  rivendi pacchetti combinati con terzi, p.es. eventi DJ esterni)
+- 93.29.20 — Gestione di stabilimenti balneari, marittimi, lacuali e
+  fluviali (CODICE PRINCIPALE per il beach club, di solito)
+
+Il codice principale lo definisce il commercialista in base all'attivita'
+prevalente, gli altri sono secondari.
+
+REGIME FORFETTARIO VS ORDINARIO
+-------------------------------
+- Forfettario: limite di ricavi 85.000 EUR/anno (limite 2026 confermato).
+  Aliquota sostitutiva 5% (primi 5 anni, se nuova attivita') o 15%.
+  Niente IVA sulle fatture, niente fatturazione elettronica
+  obbligatoria SOLO se ricavi anno precedente < 25.000 EUR (sopra
+  questa soglia, dal 2024 obbligatoria per tutti i forfettari).
+  ATTENZIONE: per uno stabilimento balneare con incassi estivi
+  importanti, il forfettario di solito NON conviene o non e' applicabile
+  per via dei costi (personale, materiali) che non puoi dedurre.
+
+- Ordinario: contabilita' ordinaria/semplificata, IVA piena, deduzione
+  costi reali. E' il regime tipico per un beach club strutturato.
+
+Decisione: fatti due conti col commercialista PRIMA di aprire la P.IVA.
+
+FATTURAZIONE ELETTRONICA B2C
+----------------------------
+Dal 2024 e' obbligatoria la fattura elettronica anche verso privati,
+salvo eccezioni residue.
+- Per importi <= 100 EUR si puo' usare la fattura semplificata.
+- Verso privato: codice destinatario "0000000" e PEC vuota; il privato
+  riceve la copia di cortesia in PDF (cartacea o via email).
+- Se il cliente ti chiede il codice fiscale per dedurla, devi inserirlo.
+- Software: tipicamente Fatture in Cloud, Aruba, TeamSystem, oppure il
+  servizio gratuito "Fatture e Corrispettivi" dell'Agenzia delle Entrate.
+
+CORRISPETTIVI TELEMATICI
+------------------------
+Per la cassa fisica del beach club (consumazioni al banco, ingressi
+pagati in loco) serve un Registratore Telematico (RT) collegato al
+Sistema di Interscambio (SDI), che trasmette giornalmente i corrispettivi
+all'Agenzia delle Entrate. Obbligo dal 2020.
+
+Per le vendite ONLINE via Stripe la situazione e' particolare:
+- Stripe e' un Payment Service Provider (PSP) ma NON trasmette i
+  corrispettivi all'AdE in automatico.
+- Sei tu (o il commercialista) a dover registrare gli incassi online
+  come corrispettivi telematici, tipicamente integrando l'export
+  giornaliero di Stripe nel software di cassa, oppure emettendo
+  fattura elettronica direttamente per ogni vendita online (soluzione
+  piu' pulita per chi vende pochi pezzi al giorno come 4 prodotti).
+- Verifica con il commercialista quale flusso usare: tendenzialmente
+  per il volume di un beach club conviene FATTURA ELETTRONICA per ogni
+  acquisto online, e RT solo per le vendite in cassa fisica.
+
+Riferimento: D.Lgs. 127/2015, Provv. AdE 30/06/2020 e successivi.
+
+NOTE SULL'IVA (vedi anche sez. 7)
+---------------------------------
+Le aliquote variano in base al prodotto: NON e' tutto al 10%.
+
+
+=== 3. PCI DSS — COSA TI COPRE STRIPE E COSA RIMANE A TE ===
+
+CHE COS'E' IL PCI DSS
+---------------------
+Payment Card Industry Data Security Standard: e' lo standard di
+sicurezza che chiunque tratti dati di carte di pagamento deve rispettare.
+E' uno standard di settore (non una legge italiana), ma le banche e i
+circuiti (Visa, Mastercard) lo impongono contrattualmente.
+
+COSA FA STRIPE PER TE
+---------------------
+Stripe e' certificato come "Service Provider Level 1", il livello piu'
+alto previsto dallo standard. Significa che:
+- I dati delle carte non passano mai dai tuoi server.
+- L'utente inserisce i dati su una pagina ospitata da Stripe (Stripe
+  Checkout in modalita' redirect, oppure Payment Element ospitato).
+- Tu ricevi solo un token / un identificatore della transazione.
+
+LIVELLO PCI DELLA TUA ATTIVITA'
+-------------------------------
+Usando Stripe Checkout in redirect, rientri nella tipologia SAQ A
+(Self-Assessment Questionnaire A), il livello piu' leggero:
+- Non gestisci carte direttamente.
+- Non hai un Cardholder Data Environment.
+- Compili annualmente un breve questionario di autovalutazione.
+
+COSA DEVI COMUNQUE FARE
+-----------------------
+Anche con SAQ A, devi:
+- Avere HTTPS valido SEMPRE (certificato TLS 1.2+ — meglio TLS 1.3).
+- Non scrivere mai numeri carta, CVV o PAN nei log applicativi
+  (verifica i log di Next.js, Vercel, Supabase: non devono finirci).
+- Non salvare in DB dati di carte (non lo stai facendo, ma controlla
+  che non si annidino in form, screenshot o backup).
+- Mantenere aggiornati framework e dipendenze (Next.js, Supabase
+  client, librerie Stripe).
+- Formare minimamente lo staff: non chiedere mai numeri carta via
+  telefono/WhatsApp, non scriverli su carta.
+- Avere un piano base di gestione incidenti (chi avvisare se sospetti
+  una compromissione, p.es. il referente Stripe).
+
+LINK UFFICIALI
+--------------
+- https://stripe.com/it/security
+- https://stripe.com/docs/security
+
+
+=== 4. GDPR — PRIVACY POLICY DEL SITO ===
+
+INQUADRAMENTO
+-------------
+Il GDPR (Reg. UE 2016/679) si applica a TUTTI i siti che trattano dati
+personali di persone fisiche nell'UE. Per un beach club che raccoglie
+nome, email, telefono, IP, ordini, prenotazioni: si applica.
+
+TITOLARE DEL TRATTAMENTO
+------------------------
+Sei tu, o la societa' titolare del beach club. La Privacy Policy deve
+indicare ragione sociale, indirizzo, P.IVA, email di contatto privacy
+(consigliato: privacy@nello-oceanbeach.it).
+
+CONTENUTI OBBLIGATORI DELLA PRIVACY POLICY (art. 13 GDPR)
+---------------------------------------------------------
+1) Identita' e dati di contatto del titolare.
+2) Eventuali dati del DPO (per un beach club di norma NON serve un DPO,
+   salvo trattamento sistematico su larga scala).
+3) Finalita' del trattamento e base giuridica per ognuna:
+   - prenotazioni: esecuzione del contratto (art. 6.1.b GDPR);
+   - vendite online: esecuzione contratto + obblighi fiscali
+     (art. 6.1.b e 6.1.c);
+   - sicurezza del sito (rate limiting, log): legittimo interesse
+     (art. 6.1.f);
+   - marketing (newsletter): consenso esplicito (art. 6.1.a).
+4) Categorie di dati trattati.
+5) Destinatari o categorie di destinatari (Stripe, Supabase, Vercel,
+   commercialista, eventuale CMP).
+6) Trasferimenti extra-UE: indicare che Stripe (Stripe Payments Europe
+   Ltd. con sede in Irlanda) puo' trasferire dati a Stripe Inc. (USA)
+   sulla base del Data Privacy Framework UE-USA del 10/07/2023.
+   Anche Vercel (USA) e altre piattaforme USA: stesso framework o
+   Standard Contractual Clauses.
+7) Periodo di conservazione (vedi sotto).
+8) Diritti dell'interessato: accesso, rettifica, cancellazione,
+   limitazione, portabilita', opposizione, revoca consenso, reclamo
+   al Garante.
+9) Se il conferimento dei dati e' obbligatorio o facoltativo, e
+   conseguenze del rifiuto.
+10) Eventuali processi decisionali automatizzati (per noi: nessuno).
+
+DATI TRATTATI TIPICAMENTE SU QUESTO SITO
+----------------------------------------
+- Form prenotazione lettino/tavolo: nome, telefono, email, data,
+  numero ospiti, eventuali note.
+- Vendita online: email, dati di pagamento (gestiti da Stripe), nome
+  per fattura/CF se richiesto, indirizzo IP.
+- Sicurezza/rate limiting: IP, user agent, timestamp.
+- Cookie tecnici di sessione (es. token CSRF, sessione Supabase).
+- Log Supabase / Vercel: IP, user agent, path, status code.
+
+TEMPI DI CONSERVAZIONE TIPICI
+-----------------------------
+- Prenotazioni: 24 mesi (per gestione storico cliente / marketing
+  base, sempre con limite ragionevole; valuta 12 mesi se non fai
+  marketing).
+- Fatture e documenti fiscali: 10 anni (art. 2220 c.c.).
+- Log tecnici (Vercel/Supabase, rate limiter): 12 mesi max — meglio
+  6 mesi se non servono.
+- Newsletter: fino a revoca consenso.
+- Backup: ruotare massimo 30-90 giorni.
+
+DIRITTI DELL'INTERESSATO
+------------------------
+Devi mettere un'email dedicata o un form per ricevere richieste:
+- accesso (sapere quali dati hai),
+- rettifica,
+- cancellazione ("diritto all'oblio", art. 17),
+- limitazione,
+- portabilita' (esportazione in formato leggibile),
+- opposizione,
+- revoca consenso (per marketing).
+Devi rispondere entro 30 giorni (prorogabili a 60 in casi complessi).
+
+REGISTRO DEI TRATTAMENTI (art. 30 GDPR)
+---------------------------------------
+Anche per piccola attivita' va tenuto se i trattamenti non sono
+"occasionali". Per il beach club lo sono SI', perche' raccogli
+prenotazioni in modo sistematico. Tienilo aggiornato (anche un foglio
+Excel va bene per attivita' piccole).
+
+DATA BREACH (art. 33-34 GDPR)
+-----------------------------
+Se subisci una violazione (DB Supabase compromesso, leak email
+clienti) hai 72 ore per notificare il Garante. Tieni un piano minimo:
+chi chiamare (legale + Supabase support + commercialista), come
+documentare, come informare gli utenti se il rischio e' alto.
+
+NOMINATIVI DA INCARICARE / RESPONSABILI ESTERNI (art. 28 GDPR)
+--------------------------------------------------------------
+I tuoi fornitori che trattano dati per tuo conto vanno nominati
+"Responsabili del trattamento" con un contratto (DPA — Data
+Processing Agreement). Tipicamente:
+- Stripe: DPA disponibile su stripe.com (firma online).
+- Supabase: DPA disponibile dal pannello.
+- Vercel/Netlify: DPA disponibile.
+- Commercialista: contratto scritto (di solito gia' presente nella
+  lettera di incarico).
+- CMP (se aggiunta): DPA con il fornitore.
+
+Vedi TEMPLATE PRIVACY POLICY in fondo (sez. 12).
+
+
+=== 5. COOKIE POLICY E COOKIE BANNER ===
+
+QUADRO NORMATIVO
+----------------
+- Direttiva 2002/58/CE (ePrivacy).
+- Provvedimento Garante 10/06/2021 (linee guida cookie italiane).
+- GDPR per la base giuridica del consenso.
+
+CATEGORIE DI COOKIE
+-------------------
+A) COOKIE TECNICI: necessari al funzionamento del sito. NON richiedono
+   consenso. Esempio: cookie di sessione, CSRF, preferenza lingua,
+   carrello.
+B) COOKIE ANALITICI ANONIMIZZATI (in alcuni casi assimilabili a
+   tecnici): es. Plausible, Matomo on-premise, oppure GA4 con IP
+   anonimizzato e configurazione restrittiva. Il Garante ha riconosciuto
+   solo alcuni di questi come "tecnici" se rispettano requisiti precisi.
+C) COOKIE DI PROFILAZIONE / MARKETING: GA4 standard, Meta Pixel, TikTok
+   Pixel, Google Ads. Richiedono CONSENSO esplicito e granulare.
+
+SITUAZIONE ATTUALE (NELLO OCEAN BEACH)
+--------------------------------------
+Allo stato attuale il sito NON usa Google Analytics, Meta Pixel,
+TikTok Pixel ne' altri tracker di marketing. Quindi, ad oggi, NON serve
+un cookie banner di consenso.
+
+DEVI COMUNQUE PUBBLICARE UNA COOKIE POLICY che dichiari quali cookie
+tecnici usi (Supabase auth, sessione, CSRF, eventualmente preferenze
+UI) e che dica espressamente che non usi cookie di profilazione.
+
+SE IN FUTURO AGGIUNGI GA4 / META PIXEL / TIKTOK PIXEL
+-----------------------------------------------------
+Diventa OBBLIGATORIO un cookie banner con CMP che:
+- mostri un banner alla prima visita;
+- abbia opzioni "Accetta tutti", "Rifiuta tutti", "Personalizza";
+  NON puoi mettere SOLO "Accetta tutti";
+- non scriva alcun cookie/tracker prima del consenso;
+- registri il consenso (data, versione policy, scelta) in modo
+  documentabile;
+- permetta all'utente di cambiare idea in qualsiasi momento (link
+  "Gestisci preferenze cookie" sempre presente).
+
+CMP CONSIGLIATE (italiane / con buona conformita' al Garante)
+-------------------------------------------------------------
+- Iubenda (https://www.iubenda.com) — molto diffusa in Italia,
+  copre anche Privacy Policy e Termini.
+- Cookiebot (https://www.cookiebot.com) — danese, scanner automatico
+  ottimo.
+- OneTrust (https://www.onetrust.com) — solido ma piu' costoso.
+- CookieYes (https://www.cookieyes.com) — economico.
+
+Costo medio: 5-30 EUR/mese per piano base.
+
+BANNER FATTO IN CASA?
+---------------------
+Sconsigliato, a meno che tu sappia esattamente cosa stai facendo.
+Il Garante ha sanzionato siti con banner non conformi (cookie wall,
+"Continua a navigare = consenso", banner senza pulsante "Rifiuta").
+
+Vedi TEMPLATE COOKIE POLICY semplificato in coda alla Privacy Policy
+(sez. 12).
+
+
+=== 6. TERMINI E CONDIZIONI DI VENDITA ===
+
+QUADRO NORMATIVO
+----------------
+- D.Lgs. 206/2005 (Codice del Consumo), in particolare artt. 45-67
+  per le vendite a distanza B2C.
+- D.Lgs. 70/2003 (commercio elettronico).
+- D.Lgs. 21/2014 (recepimento Direttiva 2011/83/UE consumatori).
+
+CONTENUTI MINIMI DEI TERMINI E CONDIZIONI
+-----------------------------------------
+1) Identificazione del venditore: ragione sociale, sede legale, P.IVA,
+   numero REA, email, telefono.
+2) Caratteristiche essenziali dei prodotti/servizi venduti.
+3) Prezzo IVA inclusa, eventuali costi aggiuntivi.
+4) Modalita' di pagamento (Stripe).
+5) Modalita' e tempi di "consegna" del servizio (voucher digitale via
+   email, check-in al beach club nel giorno scelto).
+6) Diritto di recesso 14 giorni e relative eccezioni (vedi sezione 8).
+7) Garanzia legale di conformita' (24 mesi per beni; per servizi va
+   declinata diversamente).
+8) Risoluzione delle controversie: foro del consumatore (residenza),
+   piattaforma ODR UE.
+9) Reclami: indirizzo email, tempi di risposta.
+10) Lingua del contratto: italiano.
+
+I 4 PRODOTTI DI NELLO OCEAN BEACH — INQUADRAMENTO
+-------------------------------------------------
+A) "Lettino + ombrellone giornaliero": servizio del tempo libero in data
+   specifica scelta dal cliente. Dal momento in cui scegli il giorno,
+   ricade nell'eccezione art. 59 lett. n) Codice Consumo: NIENTE diritto
+   di recesso.
+B) "Aperitivo al Tramonto" (data specifica): servizio del tempo libero
+   in data specifica = NIENTE diritto di recesso.
+C) "Tavolo VIP del 15/08": servizio del tempo libero in data specifica =
+   NIENTE diritto di recesso.
+D) "Party Pass del 30/06": ingresso a evento in data specifica = NIENTE
+   diritto di recesso (eccezione esplicita, art. 59 lett. n).
+
+ATTENZIONE: l'eccezione si applica SOLO se la data e' specifica e
+indicata al momento dell'acquisto. Se vendessi un voucher "open" da
+usare entro 6 mesi, l'eccezione potrebbe NON applicarsi (in quel caso il
+recesso 14 giorni si applica fino al primo utilizzo). Per evitare
+ambiguita', fissa sempre la data di fruizione al momento dell'acquisto.
+
+ESEMPIO PRATICO
+---------------
+Marco prenota un Aperitivo al Tramonto per il 15 agosto. Il 14 agosto
+vuole disdire — ha diritto al rimborso?
+NO. Art. 59 lett. n) D.Lgs. 206/2005: i servizi del tempo libero forniti
+in una data o periodo determinati sono esclusi dal diritto di recesso.
+Il rimborso e' a tua discrezione (commerciale, non legale). Puoi offrire
+un cambio data come gesto commerciale, ma non sei obbligato.
+
+GARANZIA LEGALE
+---------------
+Per servizi non si applica la classica garanzia 24 mesi; pero' devi
+garantire la conformita' del servizio reso (es. se vendi "Tavolo VIP
+con prosecco illimitato" e poi non c'e' prosecco, il cliente ha diritto
+al rimborso parziale o totale).
+
+FORO COMPETENTE
+---------------
+Per i contratti B2C, il foro competente e' quello del consumatore
+(residenza/domicilio). Non puoi imporre il foro di Salerno se il
+cliente e' di Milano. Mettilo nei T&C.
+
+PIATTAFORMA ODR
+---------------
+Ai sensi del Reg. UE 524/2013 devi fornire il link alla piattaforma di
+Online Dispute Resolution della Commissione Europea:
+https://ec.europa.eu/consumers/odr
+
+RECLAMI
+-------
+Indica un'email di reclamo (es. reclami@nello-oceanbeach.it) e un tempo
+di risposta indicativo (es. 7-15 giorni lavorativi).
+
+Vedi TEMPLATE TERMINI E CONDIZIONI in sez. 13.
+
+
+=== 7. ADEMPIMENTI FISCALI ITALIANI 2026 ===
+
+FATTURAZIONE ELETTRONICA B2C
+----------------------------
+Dal 2024 e' obbligatoria la fattura elettronica anche verso privati.
+Il flusso operativo:
+- Per importi <= 100 EUR: fattura semplificata (campi ridotti).
+- Verso privato consumatore finale: codice destinatario "0000000",
+  indicazione del codice fiscale del cliente SE il cliente lo richiede
+  (es. per detrazione, raro per servizi balneari).
+- Copia analogica/PDF da consegnare al cliente.
+
+Tempi di emissione: entro 12 giorni dalla data dell'operazione.
+Per Stripe, il "momento dell'operazione" coincide tipicamente con
+l'evento "checkout.session.completed" del webhook.
+
+Software: Fatture in Cloud, Aruba Fatturazione, TeamSystem, oppure il
+servizio gratuito dell'AdE "Fatture e Corrispettivi". Se vendi pochi
+pezzi, anche il portale gratuito basta.
+
+CORRISPETTIVI TELEMATICI
+------------------------
+Per la cassa fisica del beach club: Registratore Telematico (RT)
+collegato a SDI, trasmissione giornaliera. Obbligatorio dal 2020.
+
+Per le vendite ONLINE via Stripe:
+- Stripe NON e' un sostituto d'imposta italiano e NON trasmette
+  corrispettivi in automatico.
+- Devi tu (o il commercialista) gestire la registrazione contabile.
+- Soluzione piu' semplice: emetti fattura elettronica per ogni
+  acquisto online (4 prodotti, volumi gestibili) e bypassi la logica
+  dei corrispettivi telematici per quel canale.
+- Soluzione alternativa: integrare Stripe export con il software RT
+  per consolidare i corrispettivi. Piu' complessa, di solito non
+  giustificata per pochi articoli.
+
+ALIQUOTE IVA APPLICABILI
+------------------------
+ATTENZIONE: l'IVA NON e' tutta uguale. Per i prodotti di Nello Ocean
+Beach:
+
+- "Lettino + ombrellone": IVA 22%. Lo so, sembra controintuitivo, ma
+  l'aliquota agevolata 10% per le concessioni demaniali e' stata
+  oggetto di varie modifiche e oggi (2026) il servizio di noleggio
+  attrezzatura balneare e' generalmente al 22%. VERIFICA con il
+  commercialista perche' alcune fattispecie residuali sono ancora al
+  10%.
+- "Aperitivo al Tramonto" (somministrazione cibo + drink): IVA 10%
+  per la somministrazione di alimenti e bevande non alcoliche; per
+  la parte di drink alcolici da consumarsi sul posto si applica
+  comunque il 10% se la somministrazione e' contestuale al servizio
+  di ristorazione (n. 121 Tab. A parte III D.P.R. 633/1972). Caso
+  controverso: se vendi solo alcolici da banco, 22%.
+- "Tavolo VIP" (di norma include cena/aperitivo + servizio): IVA 10%
+  sulla somministrazione, 22% sulla parte di "ingresso" se separato.
+  Se vendi a prezzo unico, l'aliquota dominante segue il servizio
+  prevalente.
+- "Party Pass / ingresso serata": IVA 22% (corrispettivo per accesso
+  ad evento, salvo sia un evento culturale/spettacolo riconosciuto a
+  10%, raro per discoteche/serate beach).
+
+REGOLA D'ORO: chiedi al commercialista di mappare i 4 prodotti con le
+aliquote corrette PRIMA di andare live.
+
+SCADENZE FISCALI 2026 (TIPICHE)
+-------------------------------
+- LIPE (Liquidazione IVA Periodica) trimestrale: entro il giorno
+  ultimo del 2do mese successivo al trimestre (con eccezioni per il
+  2do/4to trimestre).
+- Versamento IVA trimestrale (per chi ha optato per trimestrale):
+  16 maggio, 20 agosto, 16 novembre, 16 marzo dell'anno seguente.
+- Dichiarazione IVA annuale: entro il 30 aprile.
+- Dichiarazione dei redditi (Modello Redditi): di norma 30 settembre.
+- INPS gestione commercianti: rate trimestrali (16/05, 20/08, 16/11,
+  16/02).
+- INAIL: 16 maggio (autoliquidazione).
+
+SPLIT PAYMENT
+-------------
+Si applica solo a fatture verso PA. Probabilmente non ti riguarda
+(salvo enti pubblici che organizzino eventi al beach club).
+
+ESTEROMETRO / ESTERO
+--------------------
+Se vendi a clienti UE/extra-UE in modo significativo, ci sono ulteriori
+adempimenti (OSS, IOSS per beni, esterometro per servizi). Per un
+beach club locale di solito non e' rilevante. Verifica se hai clienti
+non residenti che acquistano online.
+
+
+=== 8. DIRITTO DI RECESSO ONLINE 14 GIORNI ===
+
+QUADRO NORMATIVO
+----------------
+D.Lgs. 206/2005 (Codice del Consumo), artt. 52-59.
+
+REGOLA GENERALE
+---------------
+Nelle vendite a distanza B2C, il consumatore ha 14 giorni di tempo dal
+ricevimento del bene (per i beni) o dalla conclusione del contratto
+(per i servizi) per recedere senza dover fornire motivazione.
+
+Il rimborso deve avvenire entro 14 giorni dalla comunicazione del
+recesso, con lo stesso mezzo di pagamento usato per l'acquisto (salvo
+diverso accordo).
+
+ECCEZIONI — ART. 59 D.Lgs. 206/2005
+-----------------------------------
+Tra le 13 eccezioni elencate, quelle rilevanti per Nello Ocean Beach:
+- lett. n): "fornitura di alloggi per fini non residenziali, di
+  trasporto di beni, di servizi di noleggio di autovetture, di
+  servizi di catering o di servizi riguardanti le attivita' del tempo
+  libero qualora il contratto preveda una data o un periodo di
+  esecuzione specifici".
+
+Quindi:
+- Lettino per il 15 agosto: ECCEZIONE — niente recesso.
+- Aperitivo per il 15 agosto: ECCEZIONE — niente recesso.
+- Tavolo VIP per il 15 agosto: ECCEZIONE — niente recesso.
+- Party Pass per il 30 giugno: ECCEZIONE — niente recesso.
+
+IMPORTANTE: l'eccezione vale SOLO se la data o il periodo di esecuzione
+e' specifico al momento dell'acquisto. Se vendi un "voucher aperitivo"
+spendibile entro 6 mesi senza data fissa, il diritto di recesso si
+applica fino al momento del primo utilizzo.
+
+PROCEDURA OPERATIVA (PER I CASI IN CUI SI APPLICA)
+--------------------------------------------------
+1) Il cliente comunica il recesso via email o tramite modulo apposito
+   pubblicato sul sito.
+2) Tu confermi ricezione e processi il rimborso entro 14 giorni.
+3) Il rimborso avviene con lo stesso mezzo (Stripe rimborsa sulla carta).
+4) Conserva la documentazione (email, ricevuta Stripe refund).
+
+INFORMATIVA AL CLIENTE PRIMA DELL'ACQUISTO
+------------------------------------------
+Devi indicare CHIARAMENTE prima del checkout:
+- esistenza del diritto di recesso e modalita' di esercizio,
+  OPPURE
+- esplicita esclusione perche' rientra nell'art. 59 lett. n).
+
+Se NON informi il cliente, il termine di 14 giorni si estende a 12
+mesi (art. 53 Cod. Consumo). Quindi MEGLIO informare bene.
+
+Vedi TEMPLATE MODULO RECESSO in sez. 14.
+
+
+=== 9. RACCOLTA DATI DEL FORM PRENOTAZIONI E ARTICOLO 13 GDPR ===
+
+INFORMATIVA SUL FORM
+--------------------
+Quando il cliente compila il form di prenotazione (lettino, tavolo cena),
+deve trovare un'informativa breve direttamente sul form:
+
+  "I dati conferiti saranno trattati per gestire la prenotazione, ai sensi
+   dell'art. 13 GDPR. Per maggiori informazioni leggi la nostra Privacy
+   Policy [link]."
+
+CONSENSO?
+---------
+Per la finalita' di gestione prenotazione la base giuridica e'
+"esecuzione di un contratto" (art. 6.1.b GDPR): NON serve checkbox di
+consenso. Senza i dati non puoi erogare il servizio.
+
+Se vuoi mandare promo / newsletter successive, ti serve un CONSENSO
+SEPARATO ed esplicito:
+- Checkbox NON pre-spuntata.
+- Testo chiaro: "Acconsento a ricevere comunicazioni promozionali via
+  email e/o WhatsApp da Nello Ocean Beach. Posso revocare il consenso
+  in qualsiasi momento."
+- Logging del consenso (data, ora, IP, versione informativa).
+
+DATI MINIMI DA RACCOGLIERE (PRINCIPIO DI MINIMIZZAZIONE, ART. 5.1.c)
+-------------------------------------------------------------------
+Per una prenotazione lettino non chiedere il codice fiscale o la data
+di nascita: bastano nome, telefono, email, data, numero ospiti.
+Se richiedi piu' dati, devi giustificare la finalita'.
+
+INTEGRAZIONE NEL COMPONENTE BOOKING
+-----------------------------------
+Tecnicamente, nel componente Booking del sito (Next.js):
+- Mostra il link alla Privacy Policy sotto il pulsante di submit.
+- Se aggiungi marketing, aggiungi una checkbox separata.
+- Logga il consenso con timestamp e versione informativa nel DB
+  Supabase (campo p.es. "consent_marketing_version" e
+  "consent_marketing_ts").
+
+DOPPIO OPT-IN (CONSIGLIATO PER NEWSLETTER)
+------------------------------------------
+Per la newsletter, oltre alla checkbox, manda un'email di conferma
+con link da cliccare. Cosi' provi che il consenso e' genuino.
+
+
+=== 10. RESPONSABILITA' CIVILE E SICUREZZA SUL LAVORO ===
+
+ASSICURAZIONE RCT/RCO
+---------------------
+Per uno stabilimento balneare e' obbligatoria (per legge regionale
+Campania e regolamenti comunali) la copertura RCT (Responsabilita'
+Civile verso Terzi) per danni a clienti. RCO (Responsabilita' Civile
+verso Operatori) e' obbligatoria per i dipendenti.
+
+Massimali consigliati: almeno 5 milioni di EUR per RCT.
+
+DEFIBRILLATORE (DAE)
+--------------------
+Obbligatorio per impianti sportivi e luoghi affollati. Per
+stabilimenti balneari e' di fatto richiesto da molte ordinanze
+comunali (Battipaglia inclusa). Verifica con la Capitaneria di Porto
+e con il Comune.
+
+FORMAZIONE DEL PERSONALE
+------------------------
+- Bagnini: brevetto FIN o equivalente in corso di validita'.
+- Addetti antincendio (rischio medio o alto, in base alla struttura).
+- Primo soccorso: almeno 1 addetto formato per turno.
+- HACCP: obbligatorio per chi somministra cibo/bevande.
+
+PIANO DI SALVATAGGIO COMUNALE
+-----------------------------
+Lo emette il Comune di Battipaglia (per le ordinanze balneari) e
+prescrive numero minimo di bagnini per metri di costa, distanze fra
+torrette, dotazioni minime di salvataggio. Va rispettato pena
+chiusura amministrativa.
+
+DOCUMENTO DI VALUTAZIONE DEI RISCHI (DVR)
+-----------------------------------------
+Obbligatorio ai sensi del D.Lgs. 81/2008 anche per piccole imprese
+con dipendenti. Va aggiornato periodicamente.
+
+VIDEOSORVEGLIANZA
+-----------------
+Se hai telecamere: cartelli informativi obbligatori (Provv. Garante
+8/04/2010), informativa estesa, registrazione max 24-72 ore salvo
+giustificate eccezioni, eventuale accordo sindacale o autorizzazione
+ITL ex art. 4 L. 300/1970.
+
+MUSICA E SIAE
+-------------
+Se diffondi musica (party, aperitivi con DJ) servono licenze SIAE
+e SCF (per i fonogrammi). Costi variabili in base alla capienza e al
+tipo di evento. Le licenze vanno richieste prima dell'evento.
+
+
+=== 11. CHECKLIST OPERATIVA FINALE — STEP BY STEP ===
+
+Stampa questa checklist e spuntala via via.
+
+ATTIVAZIONE STRIPE E SITO
+-------------------------
+[ ]  1. Aprire account Stripe e completare KYC (carta d'identita',
+        documenti societa', IBAN aziendale).
+[ ]  2. Configurare i 4 prodotti su Stripe Dashboard con prezzo IVA
+        inclusa, descrizione, immagine.
+[ ]  3. Configurare webhook Stripe verso
+        https://nello-oceanbeach.it/api/webhooks/stripe (eventi
+        minimi: checkout.session.completed, charge.refunded,
+        payment_intent.payment_failed).
+[ ]  4. Sostituire .env.local / variabili d'ambiente Vercel con chiavi
+        reali Stripe (LIVE keys solo dopo test in modalita' test).
+[ ]  5. Verificare che HTTPS sia attivo su tutto il dominio (Vercel
+        gestisce il certificato Let's Encrypt automaticamente).
+[ ]  6. Test end-to-end con carta di prova Stripe e con carta vera di
+        piccolo importo (2-5 EUR).
+
+DOCUMENTI LEGALI SUL SITO
+-------------------------
+[ ]  7. Pubblicare Privacy Policy (footer, link "Privacy").
+[ ]  8. Pubblicare Cookie Policy (footer, link "Cookie").
+[ ]  9. Pubblicare Termini e Condizioni di vendita (footer + link
+        prima del checkout).
+[ ] 10. Pubblicare Modulo di Recesso (anche se per i 4 prodotti non
+        si applica, va pubblicato per casi residuali e per
+        completezza informativa).
+[ ] 11. Aggiungere informativa breve sul form prenotazioni con link
+        alla Privacy Policy.
+[ ] 12. Se in futuro aggiungi GA4 / Meta Pixel: integrare CMP
+        (Iubenda, Cookiebot, ecc.) e bloccare i tracker prima del
+        consenso.
+
+ADEMPIMENTI FISCALI
+-------------------
+[ ] 13. Aprire P.IVA con commercialista (codici ATECO 93.29.20 +
+        56.30.00 + altri secondari).
+[ ] 14. Iscrizione INPS gestione commercianti e INAIL.
+[ ] 15. Iscrizione Camera di Commercio Salerno (REA).
+[ ] 16. Configurare software fatturazione elettronica (Fatture in
+        Cloud, Aruba, AdE).
+[ ] 17. Configurare RT per cassa fisica.
+[ ] 18. Definire con commercialista flusso corrispettivi/fatturazione
+        per le vendite online.
+[ ] 19. Mappare aliquote IVA per i 4 prodotti e configurarle su Stripe
+        e nel software fatturazione.
+[ ] 20. Comunicazione preventiva all'Agenzia delle Entrate per
+        l'attivita' di commercio elettronico (modulo AA9/12 o
+        successivo).
+[ ] 21. Verificare obblighi SCIA al Comune di Battipaglia per
+        somministrazione cibi/bevande e per la vendita di alcolici.
+
+GDPR / PRIVACY
+--------------
+[ ] 22. Predisporre registro dei trattamenti (anche file Excel).
+[ ] 23. Firmare DPA con Stripe, Supabase, Vercel.
+[ ] 24. Predisporre piano di gestione data breach (chi chiamare,
+        come notificare entro 72 ore).
+[ ] 25. Email dedicata per richieste interessati
+        (privacy@nello-oceanbeach.it).
+[ ] 26. Definire periodi di retention nel DB Supabase (job di
+        cancellazione automatica per prenotazioni > 24 mesi, log >
+        12 mesi).
+
+SICUREZZA E AUTORIZZAZIONI BEACH CLUB
+-------------------------------------
+[ ] 27. Polizza RCT/RCO con massimale almeno 5M EUR.
+[ ] 28. Defibrillatore DAE installato e segnalato.
+[ ] 29. Bagnini con brevetto FIN in numero conforme al Piano di
+        Salvataggio comunale.
+[ ] 30. Addetti primo soccorso e antincendio formati.
+[ ] 31. HACCP per somministrazione cibi/bevande.
+[ ] 32. DVR aggiornato (D.Lgs. 81/2008).
+[ ] 33. Cartelli videosorveglianza (se presente).
+[ ] 34. Licenze SIAE/SCF per musica/eventi.
+
+POST-LANCIO / MANUTENZIONE
+--------------------------
+[ ] 35. Verifica trimestrale che le dipendenze (Next.js, Supabase
+        client, Stripe SDK) siano aggiornate.
+[ ] 36. Backup DB Supabase verificato (test di restore una volta
+        all'anno).
+[ ] 37. Revisione annuale di Privacy Policy, Cookie Policy, T&C.
+[ ] 38. Rinnovo polizze assicurative.
+[ ] 39. Audit interno minimo del registro trattamenti.
+[ ] 40. Compilazione SAQ A annuale per Stripe / PCI DSS.
+
+
+=== 12. TEMPLATE PRIVACY POLICY ===
+
+(Da copiare in /privacy-policy del sito. ADATTA i dati in [GRASSETTO]
+con le tue informazioni reali. Validalo con un legale prima di andare
+live.)
+
+--------------------------------------------------------------------------------
+PRIVACY POLICY — NELLO OCEAN BEACH
+Ultimo aggiornamento: [DATA]
+
+1. TITOLARE DEL TRATTAMENTO
+[RAGIONE SOCIALE], con sede in [INDIRIZZO COMPLETO], P.IVA [P.IVA],
+email [EMAIL], PEC [PEC]. Per esercitare i tuoi diritti privacy
+scrivi a: privacy@nello-oceanbeach.it.
+
+2. DATI TRATTATI
+- Dati di contatto: nome, cognome, email, telefono.
+- Dati di prenotazione: data, numero ospiti, eventuali note.
+- Dati di pagamento: gestiti direttamente da Stripe; non riceviamo
+  ne' conserviamo i dati della tua carta.
+- Dati tecnici: indirizzo IP, user agent, log di accesso.
+- Dati di marketing (solo se hai dato consenso): preferenze,
+  cronologia comunicazioni.
+
+3. FINALITA' E BASE GIURIDICA
+- Gestione prenotazioni e vendite: esecuzione del contratto
+  (art. 6.1.b GDPR).
+- Adempimenti fiscali e contabili: obbligo di legge (art. 6.1.c GDPR).
+- Sicurezza del sito (rate limiting, prevenzione frodi):
+  legittimo interesse (art. 6.1.f GDPR).
+- Marketing diretto (newsletter, promozioni): consenso (art. 6.1.a GDPR).
+
+4. DESTINATARI
+- Stripe Payments Europe Ltd. (Dublino, IE), per la gestione
+  pagamenti. Stripe puo' trasferire dati a Stripe Inc. (USA) ai sensi
+  del Data Privacy Framework UE-USA del 10/07/2023.
+- Supabase (USA), per l'hosting del database. Trasferimento extra-UE
+  basato su DPF e Standard Contractual Clauses.
+- Vercel Inc. (USA), per l'hosting del sito.
+- Commercialista e consulenti professionali.
+- Autorita' competenti se richiesto da legge.
+
+5. CONSERVAZIONE DEI DATI
+- Prenotazioni: 24 mesi.
+- Fatture e documenti fiscali: 10 anni (art. 2220 c.c.).
+- Log tecnici e di sicurezza: 12 mesi.
+- Dati di marketing: fino a revoca del consenso.
+
+6. DIRITTI DELL'INTERESSATO
+Hai diritto a: accesso, rettifica, cancellazione, limitazione,
+portabilita', opposizione, revoca del consenso. Hai inoltre diritto
+a proporre reclamo al Garante per la protezione dei dati personali
+(www.garanteprivacy.it).
+
+7. NATURA DEL CONFERIMENTO
+Il conferimento dei dati e' necessario per gestire la prenotazione
+o l'acquisto. Il rifiuto rende impossibile fornire il servizio.
+Il conferimento per finalita' di marketing e' facoltativo.
+
+8. PROCESSI DECISIONALI AUTOMATIZZATI
+Non effettuiamo profilazione ne' processi decisionali automatizzati.
+
+9. MODIFICHE
+Eventuali modifiche saranno pubblicate su questa pagina. Per modifiche
+sostanziali ti informeremo via email.
+--------------------------------------------------------------------------------
+
+COOKIE POLICY (BREVE — DA INTEGRARE)
+------------------------------------
+Il sito utilizza solo cookie tecnici necessari al funzionamento
+(sessione, sicurezza CSRF). Non utilizziamo cookie di profilazione
+ne' strumenti di analisi che richiedano consenso. Puoi disabilitare
+i cookie dal tuo browser, ma alcune funzionalita' potrebbero non
+funzionare.
+
+
+=== 13. TEMPLATE TERMINI E CONDIZIONI ===
+
+(Da copiare in /termini-e-condizioni. ADATTA i dati. Validalo con un
+legale.)
+
+--------------------------------------------------------------------------------
+TERMINI E CONDIZIONI DI VENDITA — NELLO OCEAN BEACH
+Ultimo aggiornamento: [DATA]
+
+1. INFORMAZIONI SUL VENDITORE
+[RAGIONE SOCIALE], sede legale [INDIRIZZO], P.IVA [P.IVA], REA
+[NUMERO REA] iscritta presso la Camera di Commercio di Salerno.
+Email: info@nello-oceanbeach.it. Tel: [TELEFONO].
+
+2. OGGETTO
+Vendita online dei seguenti servizi:
+a) Lettino + ombrellone giornaliero — accesso a postazione presso lo
+   stabilimento balneare nella data indicata.
+b) Aperitivo al Tramonto — somministrazione cibo/bevande nella data
+   indicata, durata indicativa 2 ore.
+c) Tavolo VIP — prenotazione tavolo riservato con servizio dedicato
+   nella data indicata.
+d) Party Pass — ingresso evento serale nella data indicata.
+
+3. PREZZO E PAGAMENTO
+I prezzi indicati sono comprensivi di IVA. Il pagamento avviene
+tramite Stripe Checkout (carte di credito/debito Visa, Mastercard,
+American Express, e altri metodi resi disponibili da Stripe). Non
+gestiamo direttamente i dati delle carte.
+
+4. CONCLUSIONE DEL CONTRATTO
+Il contratto si conclude al momento della conferma di pagamento da
+parte di Stripe. Riceverai email di conferma con voucher digitale.
+
+5. EROGAZIONE DEL SERVIZIO
+Il servizio si fruisce presso Nello Ocean Beach in Battipaglia (SA),
+nella data indicata al momento dell'acquisto, presentando il voucher
+digitale (anche dallo smartphone).
+
+6. DIRITTO DI RECESSO
+Ai sensi dell'art. 59 lett. n) D.Lgs. 206/2005, il diritto di recesso
+NON si applica ai servizi del tempo libero forniti in una data o
+periodo specifici. Pertanto, gli acquisti dei servizi sopra indicati
+NON sono soggetti al diritto di recesso di 14 giorni.
+
+Per servizi senza data fissa (eventuali voucher "open"), il diritto
+di recesso si applica entro 14 giorni dalla conclusione del contratto
+e fino al primo utilizzo. Per esercitarlo invia comunicazione a
+recesso@nello-oceanbeach.it utilizzando il modulo disponibile sul
+sito.
+
+7. ANNULLAMENTI E MODIFICHE COMMERCIALI
+A nostra discrezione possiamo offrire un cambio data o un voucher
+sostitutivo, senza che cio' costituisca riconoscimento del diritto
+di recesso. La decisione e' commerciale e non legale.
+
+8. CONFORMITA' DEL SERVIZIO
+Garantiamo che il servizio reso sia conforme a quanto descritto. In
+caso di non conformita', ti rimborseremo in tutto o in parte.
+
+9. MALTEMPO E FORZA MAGGIORE
+In caso di chiusura dello stabilimento per maltempo o cause di forza
+maggiore, ti offriremo un cambio data o un voucher di pari valore. In
+caso di impossibilita' definitiva, rimborso integrale.
+
+10. RECLAMI
+Eventuali reclami: reclami@nello-oceanbeach.it. Risponderemo entro
+15 giorni lavorativi.
+
+11. RISOLUZIONE DELLE CONTROVERSIE
+Per i contratti B2C il foro competente e' quello di residenza o
+domicilio del consumatore. Puoi ricorrere alla piattaforma ODR della
+Commissione Europea: https://ec.europa.eu/consumers/odr.
+
+12. LEGGE APPLICABILE
+Legge italiana. Lingua del contratto: italiano.
+
+13. DATI PERSONALI
+Vedi Privacy Policy.
+--------------------------------------------------------------------------------
+
+
+=== 14. TEMPLATE MODULO DI RECESSO ===
+
+(Pubblicalo in /recesso. Va reso disponibile come PDF scaricabile e
+come form online.)
+
+--------------------------------------------------------------------------------
+MODULO DI RECESSO
+(Ai sensi dell'art. 49, comma 1, lett. h) e All. I parte B
+D.Lgs. 206/2005)
+
+Da inviare a: Nello Ocean Beach
+Indirizzo: [INDIRIZZO COMPLETO]
+Email: recesso@nello-oceanbeach.it
+
+Il/La sottoscritto/a ____________________________________
+nato/a a _______________________ il ______________
+residente in __________________________________________
+codice fiscale ________________________________________
+
+con la presente comunica il proprio recesso dal contratto di acquisto
+del seguente servizio:
+
+Descrizione: __________________________________________
+Numero ordine Stripe: _________________________________
+Data ordine: __________________________________________
+Data conclusione contratto: ___________________________
+Importo: ______________________________________________
+
+Rimborso da effettuare sullo stesso mezzo di pagamento utilizzato per
+l'acquisto.
+
+Data: __________
+Firma: _________________________
+
+NOTA: il diritto di recesso NON si applica ai servizi del tempo libero
+in data specifica (art. 59 lett. n) D.Lgs. 206/2005). Per i prodotti
+"Aperitivo al Tramonto", "Tavolo VIP", "Party Pass" e "Lettino +
+ombrellone giornaliero" con data fissa, il modulo non e' utilizzabile.
+--------------------------------------------------------------------------------
+
+
+=== 15. CONTATTI UTILI E RIFERIMENTI NORMATIVI ===
+
+AUTORITA' E ENTI
+----------------
+- Garante per la Protezione dei Dati Personali
+  Sito: https://www.garanteprivacy.it
+  Reclami: https://www.garanteprivacy.it/reclami
+
+- Agenzia delle Entrate
+  Sito: https://www.agenziaentrate.gov.it
+  Servizio Fatture e Corrispettivi:
+  https://ivaservizi.agenziaentrate.gov.it
+
+- Camera di Commercio di Salerno
+  Sito: https://www.sa.camcom.it
+  Indirizzo: Via Roma 29, 84121 Salerno
+
+- INPS — Sede di Salerno
+  Sito: https://www.inps.it
+
+- INAIL — Sede di Salerno
+  Sito: https://www.inail.it
+
+- Comune di Battipaglia — SUAP per autorizzazioni commerciali
+  Sito: https://www.comune.battipaglia.sa.it
+
+- Capitaneria di Porto di Salerno (per concessioni demaniali)
+  Sito: https://www.guardiacostiera.gov.it/salerno
+
+- Piattaforma ODR Commissione Europea
+  https://ec.europa.eu/consumers/odr
+
+- AGCM (Autorita' Garante della Concorrenza e del Mercato) — per
+  pratiche commerciali scorrette
+  https://www.agcm.it
+
+STRIPE — DOCUMENTAZIONE
+-----------------------
+- Sicurezza e PCI: https://stripe.com/it/security
+- DPA Stripe: https://stripe.com/legal/dpa
+- Tax handling: https://stripe.com/docs/tax
+- Webhook events: https://stripe.com/docs/webhooks
+- Refund: https://stripe.com/docs/refunds
+- Compliance Italia: https://stripe.com/it/legal/payments-compliance
+
+NORMATIVA CITATA
+----------------
+- Reg. UE 2016/679 (GDPR)
+- Reg. UE 524/2013 (ODR)
+- Direttiva 2002/58/CE (ePrivacy)
+- D.Lgs. 196/2003 e D.Lgs. 101/2018 (Codice Privacy)
+- D.Lgs. 206/2005 (Codice del Consumo) — in particolare artt. 45-67
+- D.Lgs. 70/2003 (commercio elettronico)
+- D.Lgs. 21/2014 (recepimento Dir. 2011/83/UE)
+- D.P.R. 633/1972 (IVA)
+- D.Lgs. 127/2015 (fatturazione elettronica e corrispettivi telematici)
+- D.Lgs. 81/2008 (sicurezza sul lavoro)
+- L. 300/1970 (Statuto Lavoratori) — art. 4 videosorveglianza
+- Provvedimento Garante 8/04/2010 (videosorveglianza)
+- Provvedimento Garante 10/06/2021 (cookie)
+- Decisione UE-USA Data Privacy Framework del 10/07/2023
+- Codice Civile — art. 2220 (conservazione scritture contabili)
+
+CONSULENTI CONSIGLIATI
+----------------------
+Avvocato/legale: per validazione finale di Privacy Policy, T&C e
+gestione data breach.
+Commercialista: per scelta regime fiscale, ATECO, IVA, fatturazione,
+LIPE.
+Consulente del lavoro: per dipendenti stagionali e contratti.
+Consulente sicurezza (RSPP esterno): per DVR e formazione.
+
+==============================================================================
+FINE GUIDA
+==============================================================================
+Ricorda: questa guida e' un riassunto operativo. Per ogni punto critico
+(fisco, GDPR, contratti) consulta sempre un professionista. Il costo
+di una consulenza preventiva e' sempre minore di una sanzione del
+Garante o di un accertamento dell'Agenzia delle Entrate.
+==============================================================================

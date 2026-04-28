@@ -9,6 +9,9 @@
   align-items: center;
   transition: all var(--transition-base);
   padding: 0 clamp(1.5rem, 4vw, 3rem);
+  padding-top: env(safe-area-inset-top);
+  padding-left: max(clamp(1.5rem, 4vw, 3rem), env(safe-area-inset-left));
+  padding-right: max(clamp(1.5rem, 4vw, 3rem), env(safe-area-inset-right));
 }
 
 .scrolled {
@@ -132,10 +135,14 @@
 .hamburger {
   display: none;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
   gap: 5px;
   cursor: pointer;
   z-index: 1001;
   padding: 8px;
+  min-width: 44px;
+  min-height: 44px;
   background: transparent;
   border: none;
 }
@@ -185,6 +192,12 @@
 .mobileMenu .navLink {
   font-size: 1.3rem;
   letter-spacing: 0.15em;
+  min-height: 44px;
+  min-width: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1rem;
 }
 
 /* ── Responsive ── */
@@ -194,5 +207,20 @@
   }
   .hamburger {
     display: flex;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar {
+    height: var(--nav-height);
+  }
+  .navbarLogo {
+    font-size: 1.25rem;
+  }
+  .themeToggle {
+    min-width: 44px;
+    min-height: 44px;
+    width: 64px;
+    height: 32px;
   }
 }
