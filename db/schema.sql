@@ -85,6 +85,25 @@ CREATE TABLE IF NOT EXISTS private_event_requests (
   created_at TIMESTAMPTZ DEFAULT NOW()
 );
 
+-- 7. PAYMENTS — Stripe transactions
+CREATE TABLE IF NOT EXISTS payments (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  stripe_session_id TEXT UNIQUE NOT NULL,
+  stripe_payment_intent TEXT,
+  product_type TEXT NOT NULL CHECK (product_type IN ('sunbed_day','aperitif_sunset','vip_table','party_pass')),
+  amount_cents INT NOT NULL CHECK (amount_cents > 0),
+  currency TEXT NOT NULL DEFAULT 'eur' CHECK (length(currency) = 3),
+  customer_email TEXT,
+  customer_name TEXT,
+  status TEXT NOT NULL DEFAULT 'pending' CHECK (status IN ('pending','succeeded','failed','refunded')),
+  created_at TIMESTAMPTZ DEFAULT NOW(),
+  updated_at TIMESTAMPTZ DEFAULT NOW()
+);
+ALTER TABLE payments ENABLE ROW LEVEL SECURITY;
+CREATE INDEX IF NOT EXISTS idx_payments_session ON payments(stripe_session_id);
+CREATE INDEX IF NOT EXISTS idx_payments_status_created ON payments(status, created_at);
+-- Nessuna policy SELECT/UPDATE/DELETE per anon — solo il service role può leggere/scrivere
+
 -- ============================================================
 -- SANITIZATION TRIGGER — Auto-trim and clean text fields
 -- ============================================================
