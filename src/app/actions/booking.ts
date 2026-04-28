@@ -1,17 +1,19 @@
 'use server';
 
 import { z } from 'zod';
+import { headers } from 'next/headers';
 import { supabase, isSupabaseConfigured } from '@/lib/supabase';
+import { sanitizeText, sanitizePhone } from '@/lib/sanitize';
 
 // Rate limiting state (in-memory, per worker)
 const rateLimiter = new Map<string, number[]>();
 
-function checkRateLimit(ip: string): boolean {
+function checkRateLimit(identifier: string): boolean {
   const now = Date.now();
   const windowMs = 5 * 60 * 1000; // 5 minutes
   const maxRequests = 3;
 
-  const userRequests = rateLimiter.get(ip) || [];
+  const userRequests = rateLimiter.get(identifier) || [];
   const validRequests = userRequests.filter(time => now - time < windowMs);
   
   if (validRequests.length >= maxRequests) {
@@ -19,7 +21,7 @@ function checkRateLimit(ip: string): boolean {
   }
   
   validRequests.push(now);
-  rateLimiter.set(ip, validRequests);
+  rateLimiter.set(identifier, validRequests);
   return true;
 }
 
@@ -45,21 +47,24 @@ export async function submitBooking(formData: FormData) {
     return { success: false, error: 'Bot detected' };
   }
 
-  // 2. Rate limiting (Simulated IP, Next.js 'headers' can get real IP but let's use a dummy for now or phone number as identifier)
+  // 2. Rate limiting (Using IP from headers)
+  const headersList = await headers();
+  const ip = headersList.get('x-forwarded-for') || 'unknown';
   const phone = formData.get('phone') as string;
-  if (!checkRateLimit(phone || 'unknown')) {
+  
+  if (!checkRateLimit(ip) || !checkRateLimit(phone || 'unknown')) {
     return { success: false, error: 'Troppe richieste. Riprova tra 5 minuti.' };
   }
 
-  // 3. Validation
+  // 3. Validation & Sanitization
   const result = bookingSchema.safeParse({
     booking_type: formData.get('type'),
-    guest_name: formData.get('name'),
-    guest_phone: phone,
+    guest_name: sanitizeText(formData.get('name') as string),
+    guest_phone: sanitizePhone(phone),
     booking_date: formData.get('date'),
     num_guests: parseInt(formData.get('guests') as string, 10),
     preferred_area: formData.get('area'),
-    notes: formData.get('notes'),
+    notes: sanitizeText(formData.get('notes') as string),
   });
 
   if (!result.success) {

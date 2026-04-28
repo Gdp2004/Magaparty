@@ -86,8 +86,12 @@ export function Gallery() {
         onClick={(e) => { if (e.target === e.currentTarget) closeLightbox(); }}
       >
         <button className={styles.lightboxClose} onClick={closeLightbox} aria-label="Chiudi">×</button>
-        <img src={lightboxData.src} alt={lightboxData.caption} />
-        <p className={styles.lightboxCaption}>{lightboxData.caption}</p>
+        {lightboxOpen && (
+          <>
+            <img src={lightboxData.src || undefined} alt={lightboxData.caption} />
+            <p className={styles.lightboxCaption}>{lightboxData.caption}</p>
+          </>
+        )}
       </div>
     </>
   );
